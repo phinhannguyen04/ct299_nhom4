@@ -20,6 +20,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cccd',
+        'passport',
+        'diachi'
     ];
 
     /**
@@ -43,5 +46,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // mỗi người có thể mua 5 vé
+    public function vemaybays ()
+    {
+        return $this->hasMany(Vemaybay::class);
     }
 }
