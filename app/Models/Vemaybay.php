@@ -30,7 +30,7 @@ class Vemaybay extends Model
     // một vé máy bay ứng với một chỗ ngồi
     public function chongoi ()
     {
-        return $this->hasOne(Chongoi::class);
+        return $this->belongsTo(Chongoi::class);
     }
 
     // mỗi người có thể mua được nhiều vé

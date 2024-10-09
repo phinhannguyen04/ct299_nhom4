@@ -1,7 +1,17 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
+
+Route::get('/homepage', function () {
+    return view ('homepage');
+});
+
+Route::post('/homepage', function(Request $request){
+    dd($request);
+});
 
 Route::get('/', function () {
     return view('welcome');

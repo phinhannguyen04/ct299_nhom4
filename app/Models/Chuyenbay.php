@@ -25,19 +25,19 @@ class Chuyenbay extends Model
     ];
 
     // một chuyến bay từ 1 sân
-    public function sanbayXuatPhat ()
+    public function sanbayXuatphat ()
     {
-        return $this->belongsTo(Sanbay::class, 'xuatphat');
+        return $this->belongsTo(Sanbay::class, 'xuatphat', 'id');
     }
 
     // một chuyến bay đến 1 sân bay khác
-    public function sanbayDiemDen ()
+    public function sanbayDiemden ()
     {
-        return $this->belongsTo(Sanbay::class, 'diemden');
+        return $this->belongsTo(Sanbay::class, 'diemden', 'id');
     }
 
     // một chuyến bay thì có nhiều vé máy bay
-    public function vemaybays ()
+    public function vemaybay ()
     {
         return $this->hasMany(Vemaybay::class);
     }

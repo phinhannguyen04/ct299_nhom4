@@ -17,7 +17,7 @@ class Sanbay extends Model
     ];
 
     // một sân bay có nhiều chuyến bay
-    public function chuyenbays ()
+    public function chuyenbay ()
     {
         return $this->hasMany(Chuyenbay::class);
     }

@@ -18,6 +18,6 @@ class Chongoi extends Model
     // chỗ ngồi thuộc về cái vé đó
     public function vemaybay ()
     {
-        return $this->belongsTo(Vemaybay::class);
+        return $this->hasOne(Vemaybay::class);
     }
 }
