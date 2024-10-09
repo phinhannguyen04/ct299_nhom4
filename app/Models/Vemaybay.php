@@ -9,6 +9,8 @@ class Vemaybay extends Model
 {
     use HasFactory;
 
+    protected $table = 'vemaybay';
+
     protected $fillable = [
         'chuyenbay_id',
         'chongoi_id',

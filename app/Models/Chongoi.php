@@ -9,6 +9,8 @@ class Chongoi extends Model
 {
     use HasFactory;
 
+    protected $table = 'chongoi';
+
     protected $fillable = [
         'vitri'
     ];

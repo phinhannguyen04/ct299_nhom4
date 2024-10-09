@@ -9,6 +9,8 @@ class Sanbay extends Model
 {
     use HasFactory;
 
+    protected $table = 'sanbay';
+
     protected $fillable = [
         'ten',
         'thanhpho'
