@@ -107,7 +107,8 @@ class ChuyenbayResource extends Resource
                     ->native(false)
                     ->label('Giờ bay')
                     ->prefixIcon('heroicon-m-clock'),
-                TimePicker::make('gioden')
+                
+                    TimePicker::make('gioden')
                     ->required()
                     ->native(false)
                     ->label('Giờ đến')
@@ -120,7 +121,7 @@ class ChuyenbayResource extends Resource
                             if($get('ngaybay') === $get('ngayden'))
                             {
                                 if($get('gioden') < $get('giobay')) $set('gioden', null);
-                                else if($get('gioden') === $get('giobay')) $set('gioden', null);
+                                if($get('gioden') === $get('giobay')) $set('gioden', null);
                             };
                             
                         }

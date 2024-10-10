@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use Carbon\Carbon;
 use Filament\Forms;
-use App\Models\User;
 use Filament\Tables;
 use App\Models\Chongoi;
 use App\Models\Vemaybay;
@@ -11,11 +11,16 @@ use Filament\Forms\Form;
 use App\Models\Chuyenbay;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Symfony\Component\Mime\Part\DataPart;
 use App\Filament\Resources\VemaybayResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\VemaybayResource\RelationManagers;
-use Carbon\Carbon;
 
 class VemaybayResource extends Resource
 {
@@ -27,68 +32,70 @@ class VemaybayResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('chuyenbay_id')
-                    ->required()
-                    ->options(
-                        Chuyenbay::all()->pluck('id')
-                    )
-                    ->native(false)
-                    ->label('Mã chuyến bay'),
-                Forms\Components\Select::make('chongoi_id')
-                    ->required()
-                    ->options(
-                        Chongoi::all()->pluck('vitri', 'id')
-                    )
-                    ->label('Mã chỗ ngồi'),
-                Forms\Components\Select::make('user_id')
-                    ->required()
-                    ->options(
-                        User::all()->pluck('name', 'id')
-                    )
-                    ->native(false)
-                    ->searchable()
-                    ->label('Thông tin khách hàng'),
-                Forms\Components\DatePicker::make('ngaymua')
-                    ->required()
+                //
+                Select::make('chuyenbay_id')
+                    ->options(Chuyenbay::all()->pluck('id', 'id'))
+                    ->reactive()
+                    ->required(),
+                Select::make('chongoi_id')
+                    ->options(Chongoi::all()->pluck('vitri', 'id'))
+                    ->required(),
+                TextInput::make('user_id')
+                    ->default(null)
+                    ->required(),
+                DatePicker::make('ngaymua')
+                    ->reactive()
                     ->default(Carbon::today())
-                    ->prefixIcon('heroicon-m-calendar-date-range')
-                    ->native(false)
-                    // ngày mua vé không được trễ hơn ngày chuyến bay xuất phát
-                    ->afterStateUpdated(
-                        function ($state, callable $set, callable $get): void
+                    ->afterStateUpdated
+                    (
+                        function(callable $set, callable $get)
                         {
-                            // lấy chuyến bay id
-                            $chuyenbay_id = $get('chuyenbay_id');
+                            // lấy thông tin chuyến bay
+                            $chuyenbay = Chuyenbay::find($get('chuyenbay_id'));
+                            // lấy thông tin ngày hôm nay
+                            $today = Carbon::today();
+                            // kiểm tra giá trị chuyenbay_id nếu không null
+                            if (!empty($chuyenbay))
+                            {
+                                // kiểm tra nếu ngày mua sau ngày bay thì set về giá trị today
+                                Notification::make()
+                                ->title('Saved successfully')
+                                ->body($chuyenbay->ngaybay)
+                                ->success()
+                                ->send();
 
-                            // truy vấn ngày bay trong database thoogn qua chuyenbay_id
-                            $ngaybay = Chuyenbay::find($chuyenbay_id)?->ngaybay;
-
-                            // so sánh ngày mua với ngày bay
-                            if (!empty($ngaybay) && Carbon::parse($state)->gt(Carbon::parse($ngaybay))) $set('ngaymua', null);
+                                if ($get('ngaymua') > $chuyenbay->ngaybay)
+                                    
+                                    $set('ngaymua', null);
+                                
+                            }
                         }
                     )
-                    ->reactive()
-                    ->label('Ngày mua'),
-                Forms\Components\Select::make('loaive')
+                    ->required(),
+                Select::make('loaive')
                     ->required()
+                    ->default('giavephothong')
                     ->options([
                         'giaghephothong' => 'Economy',
-                        'giaghethuonggia' => 'Business'
+                        'giaghethuonggia' => 'Business',
                     ])
-                    // gán mặc định trạng thái ban đầu là ve economy
-                    ->default('giaghephothong')
-                    ->native(false)
-                    ->label('Loại vé'),
-                Forms\Components\TextInput::make('khoiluong')
+                    ->reactive()
+                    ->afterStateUpdated
+                    (
+                        function (callable $set, callable $get) {
+                            
+                            $chuyenbay = Chuyenbay::find($get('chuyenbay_id'));
+                            
+                            if ($chuyenbay) {
+                                $set('gia', $get('loaive') === 'giaghephothong' ? $chuyenbay->giaghephothong : $chuyenbay->giaghethuonggia);
+                        }
+                    }),
+
+                TextInput::make('khoiluong')
+                    ->required()->default(7)->readOnly(),
+                TextInput::make('gia')
+                    ->default(0)
                     ->required()
-                    ->numeric()
-                    ->default(7)
-                    ->readOnly()
-                    ->label('Khối lượng'),
-                Forms\Components\TextInput::make('gia')
-                    ->required()
-                    ->numeric()
-                    ->label('Giá vé'),
             ]);
     }
 
@@ -96,34 +103,14 @@ class VemaybayResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('chuyenbay_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('chongoi_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('ngaymua')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('loaive')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('khoiluong')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('gia')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                //
+                TextColumn::make('chuyenbay_id'),
+                TextColumn::make('chongoi_id'),
+                TextColumn::make('user_id'),
+                TextColumn::make('ngaymua'),
+                TextColumn::make('loaive'),
+                TextColumn::make('khoiluong'),
+                TextColumn::make('gia'),
             ])
             ->filters([
                 //
