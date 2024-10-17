@@ -38,8 +38,7 @@ class ChuyenbayResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('machuyenbay')
-                    ->required(),
+                TextInput::make('machuyenbay'),
                 
                 Select::make('xuatphat')
                 ->required()

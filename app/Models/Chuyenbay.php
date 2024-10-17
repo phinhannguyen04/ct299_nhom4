@@ -46,6 +46,20 @@ class Chuyenbay extends Model
 
     protected static function booted()
     {
+        static::creating(function ($chuyenbay)
+        {
+            /*
+                Tạo mã chuyến bay tự động
+            */
+            $ky_tu = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+            $chuyenbay->machuyenbay = 'KKND' . Carbon::now()->day . 'VN' . substr(str_shuffle($ky_tu), 0, 2) . mt_rand(100,999) . Carbon::now()->year%2000;
+
+        });
+
+        /*
+            Tạo vé tự động
+        */
         static::created(function ($chuyenbay) {
             // Khi một chuyến bay mới được tạo, thực hiện logic này
             $chuyenbay->createVes();
@@ -64,13 +78,20 @@ class Chuyenbay extends Model
         $soLuongVeThuongGia = intval($soluongve) * 0.1;
         $soLuongVeThuong = $soluongve - $soLuongVeThuongGia;
 
+        /*
+            Tạo vé máy bay tự động
+        */
+
+        $ky_tu = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $so = '0123456789';
+
         // Tạo vé Economy
         for ($i = 1; $i <= $soLuongVeThuong; $i++) {
             $chongoi_id = Chongoi::inRandomOrder()->first()->id;
             $ngaymua = Carbon::now();
 
             Vemaybay::create([
-                'mavemaybay' => $this->chuyenbay_id . 'a' . $i,
+                'mavemaybay' => 'a' . substr(str_shuffle($ky_tu), 0, 4) .'-'. substr(str_shuffle($ky_tu), 0, 5) . substr(str_shuffle($so), 0, 4),
                 'chuyenbay_id' => $this->id,
                 'chongoi_id' => $chongoi_id,
                 'user_id' => 1,
@@ -87,7 +108,7 @@ class Chuyenbay extends Model
             $ngaymua = Carbon::now();
 
             Vemaybay::create([
-                'mavemaybay' => $this->chuyenbay_id . 'b' . $i,
+                'mavemaybay' => 'b' . substr(str_shuffle($ky_tu), 0, 4) .'-'. substr(str_shuffle($ky_tu), 0, 5) . substr(str_shuffle($so), 0, 4) . Carbon::now()->day(),
                 'chuyenbay_id' => $this->id,
                 'chongoi_id' => $chongoi_id,
                 'user_id' => 1,
