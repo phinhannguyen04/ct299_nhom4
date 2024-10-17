@@ -107,24 +107,26 @@ class VemaybayResource extends Resource
         return $table
             ->columns([
                 //
-                TextColumn::make('chuyenbay_id'),
-                TextColumn::make('chongoi_id'),
-                TextColumn::make('user_id'),
-                TextColumn::make('ngaymua'),
-                TextColumn::make('loaive'),
-                TextColumn::make('khoiluong'),
-                TextColumn::make('gia'),
+                TextColumn::make('chuyenbay.machuyenbay')->label('Mã Chuyến Bay'),
+                TextColumn::make('mavemaybay')->label('Mã Vé Máy Bay'),
+                TextColumn::make('chongoi.vitri')->label('Chỗ Ngồi'),
+                TextColumn::make('user_id')->label('Người Mua'),
+                TextColumn::make('ngaymua')->label('Ngày Mua'),
+                TextColumn::make('loaive')->label('Loại Vé'),
+                TextColumn::make('khoiluong')->label('Khối Lượng Mạc Định'),
+                TextColumn::make('gia')->label('Giá'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    Tables\Actions\DeleteBulkAction::make()->label('Xóa'),
+                ])->label('Chọn Xóa'),
             ]);
     }
 
