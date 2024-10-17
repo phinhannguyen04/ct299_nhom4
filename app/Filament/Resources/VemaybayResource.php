@@ -11,16 +11,19 @@ use Filament\Forms\Form;
 use App\Models\Chuyenbay;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\Mime\Part\DataPart;
 use App\Filament\Resources\VemaybayResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\VemaybayResource\RelationManagers;
+use Filament\Tables\Filters\SelectFilter;
 
 class VemaybayResource extends Resource
 {
@@ -107,21 +110,44 @@ class VemaybayResource extends Resource
         return $table
             ->columns([
                 //
-                TextColumn::make('chuyenbay.machuyenbay')->label('Mã Chuyến Bay'),
+                TextColumn::make('chuyenbay.machuyenbay')->label('Mã Chuyến Bay')->searchable(),
                 TextColumn::make('mavemaybay')->label('Mã Vé Máy Bay'),
                 TextColumn::make('chongoi.vitri')->label('Chỗ Ngồi'),
-                TextColumn::make('user_id')->label('Người Mua'),
-                TextColumn::make('ngaymua')->label('Ngày Mua'),
+                TextColumn::make('user.name')->label('Người Mua'),
+                TextColumn::make('ngaymua')->label('Ngày Mua')->toggleable(),
                 TextColumn::make('loaive')->label('Loại Vé'),
-                TextColumn::make('khoiluong')->label('Khối Lượng Mạc Định'),
+                TextColumn::make('khoiluong')->label('Khối Lượng Mạc Định')->toggleable(),
                 TextColumn::make('gia')->label('Giá'),
             ])
             ->filters([
-                //
+                /*
+                    Lọc theo mã chuyến bay
+                */
+                SelectFilter::make('chuyenbay_id')
+                    ->relationship('chuyenbay', 'machuyenbay')
+                    ->searchable()
+                    ->preload()
+                    ->label('Chọn chuyến bay')
+                    ->indicator('Chuyến bay')
+                    ->native(false),
+                /*
+                    Lọc theo loại vé
+                */
+                SelectFilter::make('loaive')
+                    ->options([
+                        'Economy' => 'Economy',
+                        'Business' => 'Business',
+                    ])
+                    ->label('Loại vé')
+                    ->native(false)
+                    ->indicator('Loại vé'),  // Hiển thị bộ lọc đang chọn ở phía trên bảng
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\ViewAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
