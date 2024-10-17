@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ChongoiResource\Pages;
-use App\Filament\Resources\ChongoiResource\RelationManagers;
-use App\Models\Chongoi;
+use App\Filament\Resources\KhoiluonghanhlyResource\Pages;
+use App\Filament\Resources\KhoiluonghanhlyResource\RelationManagers;
+use App\Models\Khoiluonghanhly;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,23 +13,24 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ChongoiResource extends Resource
+class KhoiluonghanhlyResource extends Resource
 {
-    protected static ?string $model = Chongoi::class;
+    protected static ?string $model = Khoiluonghanhly::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationLabel = 'Chỗ ngồi';
-
-    protected static ?string $navigationGroup = 'Settings';
+    
+    protected static ?string $navigationLabel = 'Khối lượng hành lý';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('vitri')
+                Forms\Components\TextInput::make('khoiluong')
                     ->required()
-                    ->maxLength(255),
+                    ->numeric(),
+                Forms\Components\TextInput::make('gia')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 
@@ -37,8 +38,12 @@ class ChongoiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('vitri')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('khoiluong')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('gia')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -61,6 +66,16 @@ class ChongoiResource extends Resource
             ]);
     }
 
+    public static function getLabel(): string
+    {
+        return 'Khối lượng hành lý'; // Tên hiển thị cho một mục
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return 'Khối lượng hành lý'; // Tên hiển thị trên danh sách
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -68,22 +83,12 @@ class ChongoiResource extends Resource
         ];
     }
 
-    public static function getLabel(): string
-    {
-        return 'Chỗ ngồi'; // Tên hiển thị cho một mục
-    }
-
-    public static function getPluralLabel(): ?string
-    {
-        return 'Chỗ ngồi';
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListChongois::route('/'),
-            'create' => Pages\CreateChongoi::route('/create'),
-            'edit' => Pages\EditChongoi::route('/{record}/edit'),
+            'index' => Pages\ListKhoiluonghanhlies::route('/'),
+            'create' => Pages\CreateKhoiluonghanhly::route('/create'),
+            'edit' => Pages\EditKhoiluonghanhly::route('/{record}/edit'),
         ];
     }
 }

@@ -28,6 +28,9 @@ class VemaybayResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Vé máy bay';
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -41,8 +44,8 @@ class VemaybayResource extends Resource
                     ->options(Chongoi::all()->pluck('vitri', 'id'))
                     ->required(),
                 TextInput::make('user_id')
-                    ->default(null)
-                    ->required(),
+                    ->default(null),
+                    // ->required(),
                 DatePicker::make('ngaymua')
                     ->reactive()
                     ->default(Carbon::today())

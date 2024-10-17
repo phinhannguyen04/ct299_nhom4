@@ -12,6 +12,7 @@ class Vemaybay extends Model
     protected $table = 'vemaybay';
 
     protected $fillable = [
+        'mavemaybay',
         'chuyenbay_id',
         'chongoi_id',
         'user_id',

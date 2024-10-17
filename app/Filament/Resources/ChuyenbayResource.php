@@ -2,25 +2,27 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ChuyenbayResource\Pages;
-use App\Filament\Resources\ChuyenbayResource\RelationManagers;
-use App\Models\Chuyenbay;
-use App\Models\Sanbay;
 use Carbon\Carbon;
 use Filament\Forms;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\TimePicker;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use App\Models\Sanbay;
+use App\Models\Chongoi;
+use App\Models\Vemaybay;
+use Filament\Forms\Form;
+use App\Models\Chuyenbay;
 use Filament\Tables\Table;
+use League\Uri\Idna\Option;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TimePicker;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use App\Filament\Resources\ChuyenbayResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use League\Uri\Idna\Option;
+use App\Filament\Resources\ChuyenbayResource\RelationManagers;
 
 class ChuyenbayResource extends Resource
 {
@@ -28,25 +30,33 @@ class ChuyenbayResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Chuyến bay';
+
+    protected static ?string $navigationGroup = 'Settings';
+ 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                TextInput::make('machuyenbay')
+                    ->required(),
+                
                 Select::make('xuatphat')
-                    ->required()
-                    // ->relationship(name: 'xuatphat', titleAttribute: 'ten')
-                    ->options(Sanbay::all()->pluck('ten', 'id'))
-                    ->searchable()
-                    ->label('Xuất phát từ')
-                    ->debounce(200)
-                    // Thêm logic để kiểm tra
-                    ->afterStateUpdated(function ($state, callable $set, callable $get) {
-                        $xuatphat = $get('xuatphat'); // Sử dụng $get để lấy giá trị sân bay xuất phát
-                        if ($state === $xuatphat) {
-                            $set('diemden', null); // Đặt lại giá trị sân bay điểm đến
-                        }
-                    })
-                    ->reactive(),
+                ->required()
+                // ->relationship(name: 'xuatphat', titleAttribute: 'ten')
+                ->options(Sanbay::all()->pluck('ten', 'id'))
+                ->searchable()
+                ->label('Xuất phát từ')
+                ->debounce(200)
+                // Thêm logic để kiểm tra
+                ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                    $xuatphat = $get('xuatphat'); // Sử dụng $get để lấy giá trị sân bay xuất phát
+                    if ($state === $xuatphat) {
+                        $set('diemden', null); // Đặt lại giá trị sân bay điểm đến
+                    }
+                })
+                ->reactive(),
+
                 Select::make('diemden')
                     ->required()
                     ->debounce(100)
@@ -144,6 +154,12 @@ class ChuyenbayResource extends Resource
                             if ($succhua < 0) $set('succhua', null);
                         }
                     ),
+
+                TextInput::make('soluongve')
+                    ->required()
+                    ->label('Số lượng vé')
+                    ->numeric(),
+
                 Select::make('tenmaybay')
                     ->required()
                     ->options([
@@ -256,6 +272,16 @@ class ChuyenbayResource extends Resource
             'create' => Pages\CreateChuyenbay::route('/create'),
             'edit' => Pages\EditChuyenbay::route('/{record}/edit'),
         ];
+    }
+
+    public static function getLabel(): ?string 
+    {
+        return 'Chuyến bay';
+    }
+
+    public static function getPluralLable (): ?string
+    {
+        return 'Chuyến bay';
     }
 
     // hàm kiểm tra giá ghế nếu mang giá trị âm thì reset về 0

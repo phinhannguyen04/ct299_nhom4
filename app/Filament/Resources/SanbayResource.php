@@ -21,6 +21,10 @@ class SanbayResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Sân bay';
+
+    protected static ?string $navigationGroup = 'Settings';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -56,6 +60,15 @@ class SanbayResource extends Resource
             ]);
     }
 
+    public static function getLable (): ?string
+    {
+        return 'Sân bay';
+    }
+
+    public static function getPlurable (): ?string
+    {
+        return 'Sân bay';
+    }
     public static function getRelations(): array
     {
         return [
