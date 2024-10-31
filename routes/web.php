@@ -1,16 +1,20 @@
 <?php
 
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SanbayController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ChuyenbayController;
 
-Route::get('/homepage', function () {
-    return view ('homepage');
+Route::prefix('vemaybay')->group(function () {
+    Route::get('/', [ChuyenbayController::class, 'index'])->name('vemaybay.index');
+    Route::post('/', [ChuyenbayController::class, 'store'])->name('vemaybay.store');
 });
 
-Route::post('/homepage', function(Request $request){
-    dd($request);
+Route::prefix('homepage')->group(function () {
+    Route::get('/', [SanbayController::class, 'index'])->name('sanbay.index');
+    Route::post('/', [HomepageController::class, 'store'])->name('homepage.store');
 });
 
 Route::get('/', function () {

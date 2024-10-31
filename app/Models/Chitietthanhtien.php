@@ -17,18 +17,17 @@ class Chitietthanhtien extends Model
         'thanhtien',
         'mota'
     ];
-
     /*
         một chi tiết thanh toán có thể thanh toán cho nhiều vé máy bay
     */ 
-    public function vemaybays ()
+    public function vemaybay ()
     {
         return $this->hasMany(Vemaybay::class);
     }
     /*
         và các khối lượng đi kèm tương ứng
     */ 
-    public function khoiluonghanhlys ()
+    public function khoiluonghanhly ()
     {
         return $this->hasMany(Khoiluonghanhly::class);
     }

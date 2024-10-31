@@ -2,35 +2,41 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KhoiluonghanhlyResource\Pages;
-use App\Filament\Resources\KhoiluonghanhlyResource\RelationManagers;
-use App\Models\Khoiluonghanhly;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Vemaybay;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\Chitietthanhtien;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ChitietthanhtienResource\Pages;
+use App\Filament\Resources\ChitietthanhtienResource\RelationManagers;
 
-class KhoiluonghanhlyResource extends Resource
+class ChitietthanhtienResource extends Resource
 {
-    protected static ?string $model = Khoiluonghanhly::class;
+    protected static ?string $model = Chitietthanhtien::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
-    
-    protected static ?string $navigationLabel = 'Khối lượng hành lý';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('khoiluong')
+                Forms\Components\TextInput::make('khoiluonghanhly_id')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('gia')
+                Select::make('vemaybay.mavemaybay')
+                    ->required()
+                    ->options(Vemaybay::all()->pluck('mavemaybay', 'id')),
+                Forms\Components\TextInput::make('thanhtien')
                     ->required()
                     ->numeric(),
+                Forms\Components\TextInput::make('mota')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -38,12 +44,17 @@ class KhoiluonghanhlyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('khoiluong')
+                Tables\Columns\TextColumn::make('khoiluonghanhly_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('gia')
+                Tables\Columns\TextColumn::make('vemaybay.mavemaybay')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('thanhtien')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('mota')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -66,16 +77,6 @@ class KhoiluonghanhlyResource extends Resource
             ]);
     }
 
-    public static function getLabel(): string
-    {
-        return 'Khối lượng hành lý'; // Tên hiển thị cho một mục
-    }
-
-    public static function getPluralLabel(): string
-    {
-        return 'Khối lượng hành lý'; // Tên hiển thị trên danh sách
-    }
-
     public static function getRelations(): array
     {
         return [
@@ -86,9 +87,9 @@ class KhoiluonghanhlyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListKhoiluonghanhlies::route('/'),
-            'create' => Pages\CreateKhoiluonghanhly::route('/create'),
-            'edit' => Pages\EditKhoiluonghanhly::route('/{record}/edit'),
+            'index' => Pages\ListChitietthanhtiens::route('/'),
+            'create' => Pages\CreateChitietthanhtien::route('/create'),
+            'edit' => Pages\EditChitietthanhtien::route('/{record}/edit'),
         ];
     }
 }

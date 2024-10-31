@@ -65,7 +65,9 @@ class Chuyenbay extends Model
             Tạo vé tự động
         */
         static::created(function ($chuyenbay) {
-            // Khi một chuyến bay mới được tạo, thực hiện logic này
+            /*
+                Khi một chuyến bay mới được tạo, thực hiện logic này
+            */ 
             $chuyenbay->createVes();
         });
     }
@@ -115,7 +117,7 @@ class Chuyenbay extends Model
             $ngaymua = Carbon::now();
 
             Vemaybay::create([
-                'mavemaybay' => 'b' . substr(str_shuffle($ky_tu), 0, 4) .'-'. substr(str_shuffle($ky_tu), 0, 5) . substr(str_shuffle($so), 0, 4) . Carbon::now()->day(),
+                'mavemaybay' => 'b' . substr(str_shuffle($ky_tu), 0, 4) .'-'. substr(str_shuffle($ky_tu), 0, 5) . substr(str_shuffle($so), 0, 4) . Carbon::now()->day,
                 'chuyenbay_id' => $this->id,
                 'chongoi_id' => $chongoi_id,
                 'user_id' => 1,
