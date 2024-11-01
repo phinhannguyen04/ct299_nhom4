@@ -19,7 +19,8 @@ class Vemaybay extends Model
         'ngaymua',
         'loaive',
         'khoiluong',
-        'gia'
+        'gia',
+        'guest_code'
     ];
 
     // một vé máy bay ứng với một chuyến bay
@@ -44,5 +45,10 @@ class Vemaybay extends Model
     public function chitiethanhtien ()
     {
         return $this->belongsTo(Chitietthanhtien::class);
+    }
+
+    public function passengers ()
+    {
+        return $this->belongsTo(Passenger::class);
     }
 }

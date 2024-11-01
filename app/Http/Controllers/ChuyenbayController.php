@@ -40,21 +40,22 @@ class ChuyenbayController extends Controller
         //
         // dd($request);
         $validation = $request->validate([
-            'flight_id' => 'required',
-            'flight_mavemaybay' => 'required',
-            'flight_price' => 'required',
+            'flight_id'             => 'required',
+            'flight_mavemaybay'     => 'required',
+            'flight_price'          => 'required',
         ]);
         // lấy ra các vé tương ứng với chuyến bay
-        $tickets = Vemaybay::where('chuyenbay_id', $validation['flight_id'])
-            ->where('gia', $validation['flight_price'])
-            ->get();
-        // kiểm tra dãy collection tickets nếu không có thì . . .
-        if ($tickets->isEmpty())
-        {
-            return 'Khong tim thay ve cua chuyen bay '. $validation['flight_mavemaybay'];
+        $ticket = Vemaybay::where('chuyenbay_id', $validation['flight_id'])
+                ->where('gia', $validation['flight_price'])
+                ->first();
+        
+            // kiểm tra dãy collection tickets nếu không có thì . . .
+        if (!$ticket) {
+            return 'Khong tim thay ve cua chuyen bay ' . $validation['flight_mavemaybay'];
         }
         // lấy được thông tin vé
-        return redirect()->route('passengers.index')->with('tickets', $tickets);
+        // return view('passengers.personal', compact('ticket'));
+        return redirect()->route('passengers.index')->with('ticket', $ticket);
     }
 
     /**

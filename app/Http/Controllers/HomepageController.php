@@ -31,11 +31,11 @@ class HomepageController extends Controller
     {
         // dd($request['departure']);
         $validation = $request->validate([
-            'departure' => 'required',
-            'destination' => 'required',
-            'departure-date' => 'required',
-            'adults' => 'required',
-            'children' => 'required'
+            'departure'         => 'required',
+            'destination'       => 'required',
+            'departure-date'    => 'required',
+            'adults'            => 'required',
+            'children'          => 'required'
         ]);
 
         // biến $flight lưu tất cả các chuyến bay có có điểm đầu và cuối giống nhau trong cùng ngày
