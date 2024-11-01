@@ -6,10 +6,19 @@ use App\Http\Controllers\SanbayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ChuyenbayController;
+use App\Http\Controllers\HanhkhachController;
 
-Route::prefix('vemaybay')->group(function () {
-    Route::get('/', [ChuyenbayController::class, 'index'])->name('vemaybay.index');
-    Route::post('/', [ChuyenbayController::class, 'store'])->name('vemaybay.store');
+Route::prefix('flights')->group(function () {
+    Route::get('/', [ChuyenbayController::class, 'schedule'])->name('flights.schedule');
+});
+
+Route::prefix('passengers')->group(function () {
+    Route::get('/', [HanhkhachController::class, 'index'])->name('passengers.index');
+});
+
+Route::prefix('tickets')->group(function () {
+    Route::get('/', [ChuyenbayController::class, 'index'])->name('tickets.index');
+    Route::post('/', [ChuyenbayController::class, 'store'])->name('tickets.store');
 });
 
 Route::prefix('homepage')->group(function () {

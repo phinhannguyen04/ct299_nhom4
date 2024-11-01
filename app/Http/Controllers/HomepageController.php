@@ -51,7 +51,7 @@ class HomepageController extends Controller
             return 'Không tìm thấy chuyến bay nào cho ngày đã chọn.';
         }
 
-        return redirect()->route('vemaybay.index')->with('flights', $flights);
+        return redirect()->route('tickets.index')->with('flights', $flights);
     }
 
     /**

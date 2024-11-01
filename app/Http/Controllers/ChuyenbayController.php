@@ -11,6 +11,13 @@ class ChuyenbayController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function schedule()
+    {
+        //
+        $flights = Chuyenbay::all();
+        return view('flights.schedule', compact('flights'));
+    }
+
     public function index()
     {
         //
@@ -35,11 +42,11 @@ class ChuyenbayController extends Controller
         $validation = $request->validate([
             'flight_id' => 'required',
             'flight_mavemaybay' => 'required',
-            'flight_business' => 'required',
+            'flight_price' => 'required',
         ]);
         // lấy ra các vé tương ứng với chuyến bay
         $tickets = Vemaybay::where('chuyenbay_id', $validation['flight_id'])
-            ->where('gia', $validation['flight_business'])
+            ->where('gia', $validation['flight_price'])
             ->get();
         // kiểm tra dãy collection tickets nếu không có thì . . .
         if ($tickets->isEmpty())
@@ -47,7 +54,7 @@ class ChuyenbayController extends Controller
             return 'Khong tim thay ve cua chuyen bay '. $validation['flight_mavemaybay'];
         }
         // lấy được thông tin vé
-        return 'Tim thay ve cua chuyen bay '. $validation['flight_mavemaybay'];
+        return redirect()->route('passengers.index')->with('tickets', $tickets);
     }
 
     /**
