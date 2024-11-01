@@ -14,6 +14,7 @@ Route::prefix('flights')->group(function () {
 
 Route::prefix('passengers')->group(function () {
     Route::get('/', [HanhkhachController::class, 'index'])->name('passengers.index');
+    Route::post('/', [HanhkhachController::class, 'store'])->name('passengers.store');
 });
 
 Route::prefix('tickets')->group(function () {

@@ -107,7 +107,7 @@
                                 </p>
                                 <p>
                                     <strong>Ngày:</strong>
-                                    {{ date('d/m/y', strtotime($flight->ngaybay)) }}
+                                    {{ date('d-m-Y', strtotime($flight->ngaybay)) }}
                                 </p>
                                 <p>
                                     <strong>Máy bay:</strong> {{ $flight->tenmaybay }}
@@ -116,7 +116,7 @@
                                     <strong>Mã chuyến bay:</strong> {{ $flight->machuyenbay }}
                                 </p>
                                 <div class="price text-center">
-                                    <h4>{{ $flight->giaghephothong }}VND</h4>
+                                    <h4>{{ number_format($flight->giaghephothong) }} VND</h4>
                                 </div>
                                 <div class="ticket-type text-center">
                                     Economy
@@ -143,6 +143,7 @@
                                     />
                                     <!-- Trường ẩn chứa loại vé của chuyến bay -->
                                     <button 
+                                        type="submit"
                                         class="btn btn-primary w-100 mt-3"
                                     >
                                         Đặt vé
@@ -178,7 +179,7 @@
                                 </p>
                                 <p>
                                     <strong>Ngày:</strong>
-                                    {{ date('d/m/y', strtotime($flight->ngaybay)) }}
+                                    {{ date('d-m-Y', strtotime($flight->ngaybay)) }}
                                 </p>
                                 <p>
                                     <strong>Máy bay:</strong> {{ $flight->tenmaybay }}
@@ -187,7 +188,7 @@
                                     <strong>Mã chuyến bay:</strong> {{ $flight->machuyenbay }}
                                 </p>
                                 <div class="price text-center">
-                                    <h4>{{ $flight->giaghethuonggia }}VND</h4>
+                                    <h4>{{ number_format($flight->giaghethuonggia) }} VND</h4>
                                 </div>
                                 <div class="ticket-type text-center">
                                     Bussiness
@@ -213,7 +214,7 @@
                                         value="{{ $flight->giaghethuonggia }}" 
                                     />
                                     <!-- Trường ẩn chứa loại vé của chuyến bay -->
-                                    <button class="btn btn-primary w-100 mt-3">
+                                    <button type="submit" class="btn btn-primary w-100 mt-3">
                                         Đặt vé
                                     </button>
                                 </form>
