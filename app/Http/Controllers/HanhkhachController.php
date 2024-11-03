@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Passenger;
-use App\Models\Vemaybay;
 use Carbon\Carbon;
+use App\Models\Vemaybay;
+use App\Models\Passenger;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HanhkhachController extends Controller
 {
@@ -31,61 +32,87 @@ class HanhkhachController extends Controller
      */
     public function store(Request $request)
     {
-        //
         // dd($request);
-        $validation = $request->validate([
-            'cccd'                  => 'required',
-            'email'                 => 'required',
-            'name'                  => 'required',
-            'sdt'                   => 'required',
-            'diachi'                => 'required',
-            'ticket_chuyenbay_id'   => 'required',
-            'ticket_loaive'         => 'required',
-        ]);
 
+        // Lấy dữ liệu hành khách từ đầu vào
+        $passengers = $request->input('passengers');
+        
         $alpha_bet = 'ABCDEFGHIJKLMNOPQRSTUVWSYZabcdefghijklmnopqrstuvwsyz';
+    
+        foreach ($passengers as $passengerData) {
+            // Xác thực dữ liệu hành khách
+            $validator = Validator::make($passengerData, [
+                'cccd'                  => 'required',
+                'email'                 => 'required|email',
+                'name'                  => 'required',
+                'sdt'                   => 'required',
+                'diachi'                => 'required',
+                'ticket_chuyenbay_id'   => 'required',
+                'ticket_loaive'         => 'required',
+            ]);
+    
+            // Kiểm tra xem xác thực có thất bại hay không
+            if ($validator->fails()) {
+                // Xử lý lỗi xác thực tại đây
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+    
+            // Dữ liệu đã xác thực
+            $validatedData = $validator->validated();
+    
+            // Tạo mã cho hành khách
+            $code = substr(str_shuffle($alpha_bet), 0, 5) . date('d') . substr(str_shuffle($alpha_bet), 0, 5) . date('y') . substr(str_shuffle($alpha_bet), 0, 6) . date('s') . substr(str_shuffle($alpha_bet), 0, 8) . (date('s') * mt_rand(1, 9999) + mt_rand(1, 100));
+    
+            // Tạo hành khách mới
+            $passenger = Passenger::create([
+                'code'      => $code,
+                'name'      => $validatedData['name'],
+                'cccd'      => $validatedData['cccd'],
+                'email'     => $validatedData['email'],
+                'sdt'       => $validatedData['sdt'],
+                'diachi'    => $validatedData['diachi']
+            ]);
+    
+            // Lấy giá trị chuyenbay_id & loaive
+            $chuyenbay_id = $validatedData['ticket_chuyenbay_id'];
+            $loaive = $validatedData['ticket_loaive'];
+    
+            // Truy vấn vé máy bay phù hợp
+            $ticket = Vemaybay::where('chuyenbay_id', $chuyenbay_id)
+                    ->where('loaive', $loaive)
+                    ->where(function($query) {
+                        $query->where('user_id', 0)
+                              ->orWhereNull('user_id');
+                    })
+                    ->whereNull('guest_code')
+                    ->inRandomOrder()
+                    ->first();
+    
+            if ($ticket) {
+                $ticket->guest_code = $code;
+                $ticket->ngaymua = date('Y-m-d');
+                $ticket->save();
 
-        $code = substr(str_shuffle($alpha_bet), 0, 5) . Carbon::now()->day . substr(str_shuffle($alpha_bet), 0, 5) . Carbon::now()->year%2000 . substr(str_shuffle($alpha_bet), 0, 6) . Carbon::now()->second . substr(str_shuffle($alpha_bet), 0, 8) . Carbon::now()->second * mt_rand(1, 9999)+mt_rand(1, 100);
 
-        $passenger = Passenger::create([
-            'code'      => $code,
-            'name'      => $validation['name'],
-            'cccd'      => $validation['cccd'],
-            'email'     => $validation['email'],
-            'sdt'       => $validation['sdt'],
-            'diachi'    => $validation['diachi']
-        ]);
-
-        /*
-            lấy giá trị chuyenbay_id & loaive trong $validation
-        */
-        $chuyenbay_id   = $validation['ticket_chuyenbay_id'];
-        $loaive         = $validation['ticket_loaive'];
-        /*
-            - truy vấn các vé máy bay có chuyenbay_id và loaive tương ứng đồng thời chưa được mua bởi người dùng khách hoặc người dùng tài khoản
-            - lấy một vé bất kỳ có id & loại vé tương ứng
-            - gắn guest_code cho vé vừa lấy
-        */ 
-        $ticket = Vemaybay::where('chuyenbay_id', $chuyenbay_id)
-                ->where('loaive', $loaive)
-                ->where(function($query) 
-                {
-                    $query->where('user_id', 0)
-                        ->orWhereNull('user_id');
-                })
-                ->whereNull('guest_code')
-                ->inRandomOrder()
-                ->first();
-
-        if ($ticket)
-        {
-            $ticket->guest_code = $code;
-            $ticket->ngaymua    = Carbon::now()->format('Y-m-d');
-            $ticket->save();
+                 // Thêm thông tin vé đã cập nhật vào mảng kết quả
+                $ticketsUpdated[] = [
+                    'ticket_id' => $ticket->id,
+                    'chuyenbay_id' => $ticket->chuyenbay_id,
+                    'loaive' => $ticket->loaive,
+                    'guest_code' => $ticket->guest_code,
+                    'ngaymua' => $ticket->ngaymua,
+                ];
+            }
+    
+            // In thông tin vé đã tìm được (nếu có)
+            // print_r($ticket);
         }
-
-        dd($code, $ticket);
+        return response()->json([
+            'message' => 'Tickets updated successfully',
+            'tickets' => $ticketsUpdated
+        ]);
     }
+    
 
     /**
      * Display the specified resource.

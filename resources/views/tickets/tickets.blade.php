@@ -124,24 +124,33 @@
 
                                 <form action="" method="post">
                                     @csrf
+                                    <!-- Trường ẩn chứa ID chuyến bay -->
                                     <input 
                                         type="hidden" 
                                         name="flight_id" 
                                         value="{{ $flight->id }}" 
                                     />
-                                    <!-- Trường ẩn chứa ID chuyến bay -->
+                                    <!-- Trường ẩn chứa mã chuyến bay -->
                                     <input 
                                         type="hidden" 
                                         name="flight_mavemaybay"
                                         value="{{ $flight->machuyenbay }}" 
                                     />
-                                    <!-- Trường ẩn chứa mã chuyến bay -->
+                                    <!-- Trường ẩn chứa loại vé của chuyến bay -->
                                     <input 
                                         type="hidden" 
                                         name="flight_price"
                                         value="{{ $flight->giaghephothong }}" 
                                     />
-                                    <!-- Trường ẩn chứa loại vé của chuyến bay -->
+                                    {{-- Trường ấn chứa số lượng hành khách --}}
+                                    @php
+                                        $totalPassengers = session('totalPassengers')    
+                                    @endphp
+                                    <input 
+                                        type="hidden" 
+                                        name="totalPassengers"
+                                        value="{{ $totalPassengers }}" 
+                                    />
                                     <button 
                                         type="submit"
                                         class="btn btn-primary w-100 mt-3"
@@ -196,24 +205,33 @@
 
                                 <form action="" method="post">
                                     @csrf
+                                    <!-- Trường ẩn chứa ID chuyến bay -->
                                     <input 
                                         type="hidden" 
                                         name="flight_id" 
                                         value="{{ $flight->id }}" 
                                     />
-                                    <!-- Trường ẩn chứa ID chuyến bay -->
+                                    <!-- Trường ẩn chứa mã chuyến bay -->
                                     <input 
                                         type="hidden" 
                                         name="flight_mavemaybay"
                                         value="{{ $flight->machuyenbay }}" 
                                     />
-                                    <!-- Trường ẩn chứa mã chuyến bay -->
+                                    <!-- Trường ẩn chứa loại vé của chuyến bay -->
                                     <input 
                                         type="hidden" 
                                         name="flight_price"
                                         value="{{ $flight->giaghethuonggia }}" 
                                     />
-                                    <!-- Trường ẩn chứa loại vé của chuyến bay -->
+                                    {{-- Trường ấn chứa số lượng hành khách --}}
+                                    @php
+                                        $totalPassengers = session('totalPassengers')    
+                                    @endphp
+                                    <input 
+                                        type="hidden" 
+                                        name="totalPassengers"
+                                        value="{{ $totalPassengers }}" 
+                                    />
                                     <button type="submit" class="btn btn-primary w-100 mt-3">
                                         Đặt vé
                                     </button>

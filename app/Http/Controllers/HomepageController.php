@@ -38,6 +38,8 @@ class HomepageController extends Controller
             'children'          => 'required'
         ]);
 
+        $totalPassengers = $validation['adults'] + $validation['children'];
+
         // biến $flight lưu tất cả các chuyến bay có có điểm đầu và cuối giống nhau trong cùng ngày
         $flights = Chuyenbay::where('xuatphat', $validation['departure'])
             ->where('diemden', $validation['destination'])
@@ -51,7 +53,11 @@ class HomepageController extends Controller
             return 'Không tìm thấy chuyến bay nào cho ngày đã chọn.';
         }
 
-        return redirect()->route('tickets.index')->with('flights', $flights);
+        //dd($totalPassengers);
+
+        return redirect()->route('tickets.index')
+            ->with('flights', $flights)
+            ->with('totalPassengers', $totalPassengers);
     }
 
     /**
