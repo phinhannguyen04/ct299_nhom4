@@ -55,7 +55,7 @@ class Chuyenbay extends Model
             /*
                 Tạo mã chuyến bay tự động
             */
-            $ky_tu = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $ky_tu = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwsyz0123456789';
 
             $chuyenbay->machuyenbay = 'KKND' . Carbon::now()->day . 'VN' . substr(str_shuffle($ky_tu), 0, 2) . mt_rand(100,999) . Carbon::now()->year%2000;
 
@@ -81,7 +81,7 @@ class Chuyenbay extends Model
         $giaBusiness = $this->giaghethuonggia;
 
         // Tính toán số lượng vé Business và Economy
-        $soLuongVeThuongGia = intval($soluongve) * 0.1;
+        $soLuongVeThuongGia = intval($soluongve) * 0.2;
         $soLuongVeThuong = $soluongve - $soLuongVeThuongGia;
 
         /*
@@ -123,7 +123,7 @@ class Chuyenbay extends Model
                 'user_id' => 1,
                 'ngaymua' => $ngaymua,
                 'loaive' => 'Business',
-                'khoiluong' => 7,
+                'khoiluong' => 7+5,
                 'gia' => $giaBusiness,
             ]);
         }

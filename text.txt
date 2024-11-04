@@ -1,7 +1,13 @@
-    -- Hiển thị số lượng form cho khách hàng điền tương ứng với số người mua vé được chọn
-	    ** Lấy được số lượng khách hang
-	    ** Hiển thị số lượng form điền
-	-- Mỗi form điền tự động tạo ra guest_code gán theo tương ứng
-	-- Trong chi tiết hóa đơn gán vào các mã vé tương ứng
-	-- Gửi thông tin vé cho passengers 
-	-- Chuyển qua trang thanh toán
+done    -- Hiển thị số lượng form cho khách hàng điền tương ứng với số người mua vé được chọn
+		    ** Lấy được số lượng khách hang
+	    	** Hiển thị số lượng form điền
+done	-- Mỗi form điền tự động tạo ra guest_code gán theo tương ứng
+done	-- Trong chi tiết hóa đơn gán vào các mã vé tương ứng
+		
+		-- Hiển thị các khối lượng mua thêm của từng vé
+		-- Tính tổng số kg và giá của mỗi vé
+		-- Tính tổng tiền của một lần đặt vé
+		-- Gửi thông tin vé cho passengers qua mail 
+		-- Chuyển qua trang thanh toán
+
+
