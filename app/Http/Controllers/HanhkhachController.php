@@ -37,7 +37,7 @@ class HanhkhachController extends Controller
         // Lấy dữ liệu hành khách từ đầu vào
         $passengers = $request->input('passengers');
         
-        $alpha_bet = 'ABCDEFGHIJKLMNOPQRSTUVWSYZabcdefghijklmnopqrstuvwsyz';
+        $alpha_bet = 'ABCDEFGHIJKLMNOPQRSTUVWSYZabcdefghijklmnopqrstuvwsyz0123456789';
     
         foreach ($passengers as $passengerData) {
             // Xác thực dữ liệu hành khách
@@ -89,18 +89,18 @@ class HanhkhachController extends Controller
                     ->first();
     
             if ($ticket) {
-                $ticket->guest_code = $code;
-                $ticket->ngaymua = date('Y-m-d');
+                $ticket->guest_code     = $code;
+                $ticket->ngaymua        = date('Y-m-d');
                 $ticket->save();
 
 
                  // Thêm thông tin vé đã cập nhật vào mảng kết quả
                 $ticketsUpdated[] = [
-                    'ticket_id' => $ticket->id,
-                    'chuyenbay_id' => $ticket->chuyenbay_id,
-                    'loaive' => $ticket->loaive,
-                    'guest_code' => $ticket->guest_code,
-                    'ngaymua' => $ticket->ngaymua,
+                    'ticket_id'         => $ticket->id,
+                    'chuyenbay_id'      => $ticket->chuyenbay_id,
+                    'loaive'            => $ticket->loaive,
+                    'guest_code'        => $ticket->guest_code,
+                    'ngaymua'           => $ticket->ngaymua,
                 ];
             }
     
