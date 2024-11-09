@@ -9,5 +9,6 @@ done	-- Trong chi tiết hóa đơn gán vào các mã vé tương ứng
 		-- Tính tổng tiền của một lần đặt vé
 		-- Gửi thông tin vé cho passengers qua mail 
 		-- Chuyển qua trang thanh toán
+		-- Tạo trang resource passengers
 
 

@@ -1,12 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SanbayController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ChuyenbayController;
 use App\Http\Controllers\HanhkhachController;
+
+Route::prefix('view')->group(function () {
+    Route::get('/diadiem-quangbinh', fn() => view ('galaxy.diadiem-quangbinh'));
+    Route::get('/diadiem-gialai', fn() => view ('galaxy.diadiem-gialai'));
+    Route::get('/diadiem-nghean', fn() => view ('galaxy.diadiem-nghean'));
+    Route::get('/diadiem-phuquoc', fn() => view ('galaxy.diadiem-phuquoc'));
+    Route::get('/diadiem-hanoi', fn() => view ('galaxy.diadiem-hanoi'));
+});
 
 Route::prefix('flights')->group(function () {
     Route::get('/', [ChuyenbayController::class, 'schedule'])->name('flights.schedule');
@@ -28,7 +35,7 @@ Route::prefix('homepage')->group(function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('galaxy/index');
 });
 
 Route::get('/dashboard', function () {
