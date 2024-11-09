@@ -1,0 +1,364 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>GALAXY</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/">
+		
+		<!-- all css here -->
+        <link rel="stylesheet" href="assets\css\bootstrap.min.css">
+        <link rel="stylesheet" href="assets\css\plugin.css">
+        <link rel="stylesheet" href="assets\css\bundle.css">
+        <link rel="stylesheet" href="assets\css\style.css">
+        <link rel="stylesheet" href="assets\css\responsive.css">
+        <script src="assets\js\vendor\modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <div class="pos_page_inner">
+            <div class="header_area">
+                <!--header top-->
+                <div class="header_top">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">
+                            <!-- Align all content to the right -->
+                            <div class="header_links d-flex justify-content-end align-items-center">
+                                <ul class="d-flex align-items-center">
+                                    <!-- Support Icon -->
+                                    <li class="support">
+                                        <a href="#" title="Hỗ trợ">
+                                            <i class="fa fa-headphones"></i> Hỗ trợ
+                                        </a>
+                                    </li>
+                                    <!-- Sign Up and Login Links -->
+                                    <li class="ml-4">
+                                        <a href="my-account.html" title="Đăng ký">
+                                            <i class="fa fa-user"></i> Đăng ký
+                                        </a>
+                                    </li>
+                                    <li class="mx-2">|</li>
+                                    <li>
+                                        <a href="login.html" title="Đăng nhập">Đăng nhập</a>
+                                    </li>
+                                    <!-- Language Switcher -->
+                                    <li class="languages ml-4">
+                                        <a href="#" title="Tiếng Việt">
+                                            Tiếng Việt <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown_languages">
+                                            <li><a href="#">Tiếng Anh</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--header top end-->
+            
+                <!--header middle-->
+                <div class="header_middel">
+                    <div class="row align-items-center">
+                        <!--logo start-->
+                        <div class="col-lg-3 col-md-3">
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/img/logo/image.png" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <!--logo end-->
+                        <div class="col-lg-8 col-md-9">
+                            <div class="main_menu_inner">
+                                <div class="main_menu d-none d-lg-block">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="index.html">Đặt vé máy bay</a></li>
+                                            <li>
+                                                <a href="#">Tra cứu thông tin chuyến bay</a>
+                                                <!-- Search dropdown menu -->
+                                                <div class="search-dropdown">
+                                                    <div class="border border-secondary rounded p-4 shadow search-form-container">
+                                                        <form id="ticketSearchForm">
+                                                            <h4 class="mb-3">Tìm Vé Máy Bay</h4>
+                                                            <div class="mb-3">
+                                                                <label for="ticketCode" class="form-label">Nhập mã vé:</label>
+                                                                <input type="text" class="form-control" id="ticketCode" placeholder="Nhập mã vé" required>
+                                                            </div>
+                                                            <div class="d-flex justify-content-center align-items-center">
+                                                                <button type="button" class="btn-search" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                    Tìm vé
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div> 
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin vé máy bay</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body">
+                <p><strong>Mã vé:</strong> <span id="modalTicketCode">Mã vé của bạn sẽ được hiển thị ở đây</span></p>
+                <p><strong>Chuyến bay:</strong> HAN ⟶ SGN</p>
+                <p><strong>Ngày:</strong> 12/12/2024</p>
+                <p><strong>Giá:</strong> 1,200,000 VND</p>
+                <p><strong>Loại vé:</strong> Economy</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+                    
+                        <div class="col-lg-1 col-md-1">
+                            <div class="header_right_info">
+                                <div class="search_bar">
+                                    <form action="#">
+                                        <input placeholder="Tìm kiếm..." type="text">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--header middle end-->
+            </div>
+            
+         <!--header end -->
+        </div>
+            </div>
+            <!--pos page start-->
+            <div class="pos_page">
+                   <!--pos page inner-->
+                   <div class="img_top"><img src="assets/img/diadiem/thanhhoa.jpg" alt=""></div>
+                  <div class="container">
+                    <div class="main_blog_area blog_details">
+                        <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="blog_details_left">
+                                        <div class="blog_gallery">   
+                                            <div class="blog_header">
+                                                <h1><a href="#" class="title_blog"><b>Thanh Hóa</b></a></h1>
+                                                <h2>
+                                                    <a href="#">THANH HÓA, NƠI HỘI TỤ CỦA NHỮNG TRUYỀN THUYẾT 📜, CẢNH SẮC THIÊN NHIÊN HÙNG VĨ 🌄 VÀ CON NGƯỜI KIÊN CƯỜNG 💪, LUÔN MANG TRONG MÌNH VẺ ĐẸP VÀ SỨC MẠNH CỦA QUÊ HƯƠNG.
+                                                    </a>
+                                                </h2>
+                                                <div class="blog__post">
+                                                    <ul>
+                                                        <li class="post_author">Posts by : admin</li>
+                                                        <li class="post_date">10/2024</li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="blog_entry_content">
+                                                <p class="blockquote">Thanh Hóa là một tỉnh nằm ở miền Trung Việt Nam, nổi bật với cảnh quan thiên nhiên đa dạng, từ biển cả đến núi non. Nơi đây có nhiều điểm du lịch hấp dẫn như bãi biển Sầm Sơn, di sản văn hóa Thành Nhà Hồ và khu di tích Lam Kinh. Thanh Hóa cũng nổi tiếng với nền ẩm thực phong phú, trong đó có món nem chua. Tỉnh này còn là quê hương của nhiều danh nhân lịch sử và văn hóa, góp phần quan trọng vào di sản văn hóa dân tộc Việt Nam.</p>
+                                            </div>
+                                                <div class="blog_entry_content">
+                                                    <h4>1️⃣ Động Tiên Sơn
+                                                    </h4>
+                                                    <p>Nằm trong khu vực Vườn quốc gia Bến En, động có hệ thống thạch nhũ kỳ ảo và cảnh quan thiên nhiên tươi đẹp, là điểm đến lý tưởng cho những ai yêu thích khám phá.</p>
+                                                    <h4>2️⃣ Bãi biển Sầm Sơn
+                                                    </h4>
+                                                    <p>Một trong những bãi biển đẹp nhất miền Bắc, nổi tiếng với cát trắng, nước trong xanh và nhiều dịch vụ du lịch hấp dẫn.
+                                                    </p>
+                                                    <h4>3️⃣ Thành Nhà Hồ 
+                                                    </h4>
+                                                    <p>Di sản văn hóa thế giới, với kiến trúc độc đáo và lịch sử lâu đời, là nơi lưu giữ nhiều giá trị văn hóa và lịch sử của dân tộc.
+
+                                                    </p>
+                                                    <h4>4️⃣ Ẩm thực 
+                                                    </h4>
+                                                    <p>Nem chua 🥟: Món ăn nổi tiếng, làm từ thịt heo và gia vị, gói trong lá chuối.
+                                                        Bánh tẻ 🍚: Bánh làm từ bột gạo, thường có nhân thịt.
+                                                        Chả tôm 🍤: Tôm tươi giã nhuyễn, chế biến thành chả thơm ngon.
+                                                        Bánh răng bừa 🥮: Bánh có hình dáng giống chiếc răng, nhân đậu xanh hoặc thịt.</p>
+                                                    </div>
+                                            <div class="blog_active owl-carousel">
+                                               <div class="blog_thumb blog__hover">
+                                                    <a href="blog-details.html"><img src="assets/img/diadiem/thanhhoa_1.jpg" alt=""></a>
+                                                </div>
+                                                <div class="blog_thumb">
+                                                    <a href="blog-details.html"><img src="assets/img/diadiem/thanhhoa_2.jpg" alt=""></a>
+                                                </div>
+                                                <div class="blog_thumb">
+                                                    <a href="blog-details.html"><img src="assets/img/diadiem/thanhhoa_3.jpg" alt=""></a>
+                                                </div>
+                                                <div class="blog_thumb">
+                                                    <a href="blog-details.html"><img src="assets/img/diadiem/thanhhoa_4.jpg" alt=""></a>
+                                                </div>
+                                            </div>   
+                                            <div class="blog_entry_meta">
+                                               <ul>
+                                                   <li><a href="#">0 comments</a></li>
+                                                   <li> / Tags: <a href="#">fashion</a></li>
+                                               </ul>
+                                            </div>
+                                            <div class="wishlist-share">
+                                            <h4>Share on:</h4>
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-rss"></i></a></li>           
+                                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>           
+                                                <li><a href="#"><i class="fa fa-tumblr"></i></a></li>           
+                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>        
+                                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>        
+                                            </ul>      
+                                        </div>
+                                        </div> 
+                                        <div class="comments_area">
+                                            <div class="comments__title">
+                                                <h3>Leave a Reply </h3>
+                                            </div>
+                                            <div class="comments__notes">
+                                                <p>Your email address will not be published.</p>
+                                            </div>
+                                             <div class="product_review_form blog_form">
+                                                <form action="#">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <label for="review_comment">comment </label>
+                                                            <textarea name="comment" id="review_comment"></textarea>
+                                                        </div> 
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <label for="author">Name</label>
+                                                            <input id="author" type="text">
+    
+                                                        </div> 
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <label for="email">Email </label>
+                                                            <input id="email" type="text">
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <label for="website">website </label>
+                                                            <input id="website" type="text">
+                                                        </div>   
+                                                    </div>
+                                                    <button type="submit">Post Comment</button>
+                                                 </form>   
+                                            </div> 
+                                        </div>     
+    
+    
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    </div>
+                  </div>
+
+            </div>
+            
+            <!--pos page end-->
+            <!--footer area start-->
+            <div class="footer_area">
+                <div class="footer_top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>About us</h3>
+                                    <p>Galaxy airways...</p>
+                                    <div class="footer_widget_contect">
+                                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>3/2, NinhKieu, CanTho City, VietNam</p>
+
+                                        <p><i class="fa fa-mobile" aria-hidden="true"></i>0333309336</p>
+                                        <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Galaxy@airways.com </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>My Account</h3>
+                                    <ul>
+                                        <li><a href="#"> Brands</a></li>
+                                        <li><a href="#"> Gift Vouchers </a></li>
+                                        <li><a href="#"> Affiliates </a></li>
+                                        <li><a href="#"> Specials </a></li>
+                                        <li><a href="#"> Privacy policy </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>Informations</h3>
+                                    <ul>
+                                        <li><a href="#"> Brands</a></li>
+                                        <li><a href="#"> Gift Vouchers </a></li>
+                                        <li><a href="#"> Affiliates </a></li>
+                                        <li><a href="#"> Specials </a></li>
+                                        <li><a href="#"> Privacy policy </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>extras</h3>
+                                    <ul>
+                                        <li><a href="#"> Brands</a></li>
+                                        <li><a href="#"> Gift Vouchers </a></li>
+                                        <li><a href="#"> Affiliates </a></li>
+                                        <li><a href="#"> Specials </a></li>
+                                        <li><a href="#"> Privacy policy </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bottom">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="copyright_area">
+                                    <ul>
+                                        <li><a href="#"> about us </a></li>
+                                        <li><a href="#">  Customer Service  </a></li>
+                                        <li><a href="#">  Privacy Policy  </a></li>
+                                    </ul>
+                                    <p>Copyright &copy; 2024 <a href="#">GALAXY AIR</a>. All rights reserved. </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="footer_social text-right">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                        <li><a class="pinterest" href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-wifi" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--footer area end-->
+      
+		
+		<!-- all js here -->
+        <script src="assets\js\vendor\jquery-1.12.0.min.js"></script>
+        <script src="assets\js\popper.js"></script>
+        <script src="assets\js\bootstrap.min.js"></script>
+        <script src="assets\js\ajax-mail.js"></script>
+        <script src="assets\js\plugins.js"></script>
+        <script src="assets\js\main.js"></script>
+    </body>
+</html>

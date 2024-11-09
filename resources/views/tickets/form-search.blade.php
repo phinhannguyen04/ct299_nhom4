@@ -1,3 +1,20 @@
+<style>
+    /* Bo góc cho thẻ div */
+    .border-container {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        /* Bo góc cho thẻ div */
+        padding: 20px;
+        background-color: #fff;
+        /* Màu nền cho div */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng */
+    }
+</style>
+<x-flight>
+
+</x-flight>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,19 +25,7 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet"
         />
-        <style>
-            /* Bo góc cho thẻ div */
-            .border-container {
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                /* Bo góc cho thẻ div */
-                padding: 20px;
-                background-color: #fff;
-                /* Màu nền cho div */
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                /* Đổ bóng */
-            }
-        </style>
+
     </head>
 
     <body class="container">

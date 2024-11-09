@@ -1,0 +1,554 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>GALAXY</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/">
+		
+		<!-- all css here -->
+        <link rel="stylesheet" href="assets\css\bootstrap.min.css">
+        <link rel="stylesheet" href="assets\css\plugin.css">
+        <link rel="stylesheet" href="assets\css\bundle.css">
+        <link rel="stylesheet" href="assets\css\style.css">
+        <link rel="stylesheet" href="assets\css\responsive.css">
+        <script src="assets\js\vendor\modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <div class="pos_page_inner">
+            <div class="header_area">
+                <!--header top-->
+                <div class="header_top">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">
+                            <!-- Align all content to the right -->
+                            <div class="header_links d-flex justify-content-end align-items-center">
+                                <ul class="d-flex align-items-center">
+                                    <!-- Support Icon -->
+                                    <li class="support">
+                                        <a href="#" title="Hỗ trợ">
+                                            <i class="fa fa-headphones"></i> Hỗ trợ
+                                        </a>
+                                    </li>
+                                    <!-- Sign Up and Login Links -->
+                                    <li class="ml-4">
+                                        <a href="my-account.html" title="Đăng ký">
+                                            <i class="fa fa-user"></i> Đăng ký
+                                        </a>
+                                    </li>
+                                    <li class="mx-2">|</li>
+                                    <li>
+                                        <a href="login.html" title="Đăng nhập">Đăng nhập</a>
+                                    </li>
+                                    <!-- Language Switcher -->
+                                    <li class="languages ml-4">
+                                        <a href="#" title="Tiếng Việt">
+                                            Tiếng Việt <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown_languages">
+                                            <li><a href="#">Tiếng Anh</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--header top end-->
+            
+                <!--header middle-->
+                <div class="header_middel">
+                    <div class="row align-items-center">
+                        <!--logo start-->
+                        <div class="col-lg-3 col-md-3">
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/img/logo/image.png" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <!--logo end-->
+                        <div class="col-lg-8 col-md-9">
+                            <div class="main_menu_inner">
+                                <div class="main_menu d-none d-lg-block">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="index.html">Đặt vé máy bay</a></li>
+                                            <li>
+                                                <a href="#">Tra cứu thông tin chuyến bay</a>
+                                                <!-- Search dropdown menu -->
+                                                <div class="search-dropdown">
+                                                    <div class="border border-secondary rounded p-4 shadow search-form-container">
+                                                        <form id="ticketSearchForm">
+                                                            <h4 class="mb-3">Tìm Vé Máy Bay</h4>
+                                                            <div class="mb-3">
+                                                                <label for="ticketCode" class="form-label">Nhập mã vé:</label>
+                                                                <input type="text" class="form-control" id="ticketCode" placeholder="Nhập mã vé" required>
+                                                            </div>
+                                                            <div class="d-flex justify-content-center align-items-center">
+                                                                <button type="button" class="btn-search" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                    Tìm vé
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div> 
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin vé máy bay</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body">
+                <p><strong>Mã vé:</strong> <span id="modalTicketCode">Mã vé của bạn sẽ được hiển thị ở đây</span></p>
+                <p><strong>Chuyến bay:</strong> HAN ⟶ SGN</p>
+                <p><strong>Ngày:</strong> 12/12/2024</p>
+                <p><strong>Giá:</strong> 1,200,000 VND</p>
+                <p><strong>Loại vé:</strong> Economy</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+                    
+                        <div class="col-lg-1 col-md-1">
+                            <div class="header_right_info">
+                                <div class="search_bar">
+                                    <form action="#">
+                                        <input placeholder="Tìm kiếm..." type="text">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--header middle end-->
+            </div>
+            
+         <!--header end -->
+         <div class="product_d_info">
+            <div class="row justify-content-right">
+                <div class="col-12 col-md-6">
+                    <div class="product_d_inner">
+                        <div class="product_info_button">
+                            <ul class="nav" role="tablist">
+                                <li>
+                                    <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">khứ hồi</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">một chiều</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                <div class="product_d_table">
+                                    <form action="#" method="get">
+                                        <div class="form-row">
+                                            <div class="form-group col-4 col-md-3">
+                                                <select id="ticket-class" name="ticket-class" class="form-control" required>
+                                                    <option value="economy">Phổ thông</option>
+                                                    <option value="business">Thương gia</option>
+                                                </select>
+                                            </div>
+        
+                                            <div class="form-group col-4 col-md-3">
+                                                <select id="passenger-count" name="passenger-count" class="form-control" required>
+                                                    <option value="1">1 người lớn</option>
+                                                    <option value="2">2 người lớn</option>
+                                                    <option value="3">3 người lớn</option>
+                                                    <option value="4">4 người lớn</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-4 col-md-3">
+                                                <select id="passenger-count" name="passenger-count" class="form-control" required>
+                                                    <option value="1">1 trẻ em</option>
+                                                    <option value="2">2 trẻ em</option>
+                                                    <option value="3">3 trẻ em</option>
+                                                    <option value="4">4 trẻ em</option>
+                                                </select>
+                                            </div>
+        
+        
+                                            <div class="form-group col-12 col-md-6">
+                                                <input list="departure-options" id="from" name="departure" class="form-control" placeholder="Chọn điểm khởi hành" required>
+                                                <datalist id="departure-options">
+                                                    <option value="Cần Thơ">
+                                                </datalist>
+                                            </div>
+        
+                                            <div class="form-group col-12 col-md-6">
+                                                <input list="destination-options" id="to" name="destination" class="form-control" placeholder="Chọn điểm đến" required>
+                                                <datalist id="destination-options">
+                                                    <option value="Hà Nội">
+                                                    <option value="TP. Hồ Chí Minh">
+                                                    <option value="Đà Nẵng">
+                                                    <option value="Nha Trang">
+                                                    <option value="Phú Quốc">
+                                                    <option value="Đà Lạt">
+                                                </datalist>
+                                            </div>
+        
+                                            <div class="form-group col-12 col-md-6">
+                                                <input type="date" id="departure-date" name="departure-date" class="form-control" required>
+                                            </div>
+        
+                                            <div class="form-group col-12 col-md-6">
+                                                <input type="date" id="return-date" name="return-date" class="form-control">
+                                            </div>
+        
+                                            <!-- Nút button -->
+                                            <div class="form-group col-12">
+                                                <button type="submit" class="btn-search">Tìm chuyến bay</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+        
+                            <div class="tab-pane fade" id="sheet" role="tabpanel">
+                                <div class="product_d_table">
+                                    <form action="#" method="get">
+                                        <div class="form-row">
+                                            <div class="form-group col-4 col-md-3">
+                                                <select id="ticket-class" name="ticket-class" class="form-control" required>
+                                                    <option value="economy">Phổ thông</option>
+                                                    <option value="business">Thương gia</option>
+                                                </select>
+                                            </div>
+        
+                                            <div class="form-group col-4 col-md-3">
+                                                <select id="passenger-count" name="passenger-count" class="form-control" required>
+                                                    <option value="1">1 người lớn</option>
+                                                    <option value="2">2 người lớn</option>
+                                                    <option value="3">3 người lớn</option>
+                                                    <option value="4">4 người lớn</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-4 col-md-3">
+                                                <select id="passenger-count" name="passenger-count" class="form-control" required>
+                                                    <option value="1">1 trẻ em</option>
+                                                    <option value="2">2 trẻ em</option>
+                                                    <option value="3">3 trẻ em</option>
+                                                    <option value="4">4 trẻ em</option>
+                                                </select>
+                                            </div>
+        
+        
+                                            <div class="form-group col-12 col-md-6">
+                                                <input list="departure-options" id="from" name="departure" class="form-control" placeholder="Chọn điểm khởi hành" required>
+                                                <datalist id="departure-options">
+                                                    <option value="Cần Thơ">
+                                                </datalist>
+                                            </div>
+        
+                                            <div class="form-group col-12 col-md-6">
+                                                <input list="destination-options" id="to" name="destination" class="form-control" placeholder="Chọn điểm đến" required>
+                                                <datalist id="destination-options">
+                                                    <option value="Hà Nội">
+                                                    <option value="TP. Hồ Chí Minh">
+                                                    <option value="Đà Nẵng">
+                                                    <option value="Nha Trang">
+                                                    <option value="Phú Quốc">
+                                                    <option value="Đà Lạt">
+                                                </datalist>
+                                            </div>
+        
+                                            <div class="form-group col-12 col-md-6">
+                                                <input type="date" id="departure-date" name="departure-date" class="form-control" required>
+                                            </div>
+        
+                                            <div class="form-group col-12 col-md-6">
+                                            </div>
+        
+                                            <!-- Nút button -->
+                                            <div class="form-group col-12">
+                                                <button type="submit" class="btn-search">Tìm chuyến bay</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+            </div>
+        </div>
+        </div>
+            </div>
+            <!--pos page start-->
+            <div class="pos_page">
+                   <!--pos page inner-->
+                   <div class="container">     
+                         <!--pos home section-->
+                            <div class=" pos_section">
+                                <div class="row pos_home">
+                                    <div class="col-lg-12 col-md-12">
+                                        <!--banner slider start-->
+                                        <div class="banner_slider slider_1">
+                                            <div class="slider_active owl-carousel">
+                                                <div class="single_slider" style="background-image: url(assets/img/slider/slide_1.png)">
+                                                      
+                                                </div>
+                                                <div class="single_slider" style="background-image: url(assets/img/slider/5.png)">
+                                                          
+                                                </div>
+                                                <div class="single_slider" style="background-image: url(assets/img/slider/6.png)">
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <!--banner slider start-->
+     
+                                    </div>
+                                </div>  
+                            </div>
+                            
+                             <div class="container">
+                                 <div class="row pos_home">
+                                     <!--categorie menu end-->
+                                     <div class="col-lg-12 col-md-12">
+                                         <!--banner slider start-->
+                                         <!--banner slider start-->
+                                         <div class="blog_area">
+                                             <div class="row">   
+                                                 <div class="col-lg-4 col-md-6">
+                                                     <div class="single_blog">
+                                                         <div class="blog_thumb">
+                                                             <a href="blog-details.html"><img src="assets/img/slider/the_1.png" alt=""></a>
+                                                         </div>
+                                                         <div class="blog_content">
+                                                             <h3><a href="blog-details.html">An tâm trọn vẹn bay cùng Galaxy.</a></h3>
+                                                             <p>Các chương trình bảo hiểm hấp dẫn đến từ các đối tác bảo hiểm uy tín của Galaxy. Thủ tục mua  và bồi thường đơn giản, nhanh chóng.</p>
+                                                             <div class="post_footer">
+                                                                 <div class="post_meta">
+                                                                     <ul>
+                                                                         <li>20/10/2024</li>
+                                                                         <li>3 Bình luận</li>
+                                                                     </ul>
+                                                                 </div>
+                                                                 <div class="Read_more">
+                                                                     <a href="blog-details.html">Đọc thêm...  <i class="fa fa-angle-double-right"></i></a>
+                                                                 </div> 
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-lg-4 col-md-6">
+                                                     <div class="single_blog">
+                                                         <div class="blog_thumb">
+                                                             <a href="blog-details.html"><img src="assets/img/slider/swift2471592284169014-1695094650429.webp" alt=""></a>
+                                                         </div>
+                                                         <div class="blog_content">
+                                                             <h3><a href="blog-details.html">Vận chuyển Bắc-Trung-Nam siêu tốc, siêu tiện lợi.</a></h3>
+                                                                <p>Rút ngắn khoảng cách hàng nghìn km trong thời gian ngắn nhất.</p>
+                                                             <div class="post_footer">
+                                                                 <div class="post_meta">
+                                                                     <ul>
+                                                                         <li>21/10/2024</li>
+                                                                         <li>10 Bình luận</li>
+                                                                     </ul>
+                                                                 </div>
+                                                                 <div class="Read_more">
+                                                                     <a href="blog-details.html">Đọc thêm...<i class="fa fa-angle-double-right"></i></a>
+                                                                 </div> 
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-lg-4 col-md-6">
+                                                     <div class="single_blog">
+                                                         <div class="blog_thumb">
+                                                             <a href="blog-details.html"><img src="assets/img/slider/the_2.png" alt=""></a>
+                                                         </div>
+                                                         <div class="blog_content">
+                                                             <h3><a href="blog-details.html">Ưu đãi dành cho thẻ chủ mới.</a></h3>
+                                                                <p>Ưu tin check-in tại sân bay dành cho thẻ Platium. Giảm 50% du lịch, mua sắm, ăn uống giúp hàng khách tiết kiệm chi phí</p>
+                                                             <div class="post_footer">
+                                                                 <div class="post_meta">
+                                                                     <ul>
+                                                                         <li>25/01/2024</li>
+                                                                         <li>5 Bình luận</li>
+                                                                     </ul>
+                                                                 </div>
+                                                                 <div class="Read_more">
+                                                                     <a href="blog-details.html">Đọc thêm...<i class="fa fa-angle-double-right"></i></a>
+                                                                 </div> 
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>    
+                                         </div>
+                                         <div class="banner_slider mb-35">
+                                             <img src="assets/img/banner/image.png" alt="">
+                                         </div>
+                                         <div class="featured-products">
+                                             <div class="product-grid">
+                                                 <!-- Thẻ sản phẩm 1 -->
+                                                 <div class="product-item">
+                                                    <span class="label">Khách sạn</span>
+                                                    <img src="assets/img/banner/ks.png" alt="Khách sạn" class="product-image">
+                                                </div>
+                                                <div class="product-item">
+                                                    <span class="label">Du Lịch Thế Giới</span>
+                                                    <img src="assets/img/banner/dltg.png" alt="dltg" class="product-image">
+                                                </div>
+                                                <div class="product-item">
+                                                    <span class="label">Săn Vé Giá Rẻ</span>
+                                                    <img src="assets/img/banner/svgr.png" alt="svgr" class="product-image">
+                                                </div>
+                                                 <div class="product-item">
+                                                    <span class="label">Địa Điểm Nổi Bật</span>
+                                                    <a href="diadiem-gialai.html">
+                                                        <img src="assets/img/banner/gialai.png" alt="ddnb" class="product-image">
+                                                    </a> 
+                                                 </div>
+                                                 <div class="product-item">
+                                                     <a href="diadiem-nghean.html"><img src="assets/img/banner/nghena.png" alt="nghean" class="product-image"></a>
+                                                 </div>
+                                                 <div class="product-item">
+                                                     <a href="diadiem-phuquoc.html"><img src="assets/img/banner/phuquoc.png" alt="phuquoc" class="product-image"></a>
+                                                 </div>
+                                                 <div class="product-item">
+                                                     <a href="diadiem-quangbinh.html"><img src="assets/img/banner/quangbing.png" alt="quangbinh" class="product-image"></a>
+                                                 </div>
+                                                 <div class="product-item">
+                                                    <a href="diadiem-thanhhoa.html"><img src="assets/img/banner/thanh hoa.png" alt="thanhhoa" class="product-image"></a>
+                                                </div>
+                                                 <div class="product-item">
+                                                     <a href="diadiem-hanoi.html"><img src="assets/img/banner/hanoi.png" alt="hanoi" class="product-image"></a>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>  
+                             </div>
+                             
+                         </div>
+                         <!--pos home section end-->
+                     
+            <div class="map">
+                <div class="contact_map">
+                    <div class="row">
+                        <div class="col-12">
+                            <iframe src="https://www.google.com/maps/embed?pb" width="500" height="450" style="border:0" allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            
+            <!--pos page end-->
+            <!--footer area start-->
+            <div class="footer_area">
+                <div class="footer_top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>Galaxy Airways</h3>
+                                    <p>Hãng Hàng Không Việt Nam</p>
+                                    <div class="footer_widget_contect">
+                                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>3/2, NinhKieu, CanTho City, VietNam</p>
+
+                                        <p><i class="fa fa-mobile" aria-hidden="true"></i>Hotline: 0333309336</p>
+                                        <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Galaxy@airways.com </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>Tài Khoản Của Tôi</h3>
+                                    <ul>
+                                        <li><a href="#"> Đăng Nhập</a></li>
+                                        <li><a href="#"> Đăng Ký </a></li>
+                                        <li><a href="#"> Khôi Phục Tài Khoản </a></li>
+                                        <li><a href="#"> Đổi Mật Khẩu </a></li>
+                                        <li><a href="#"> Xóa Tài Khoản </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>Các Thông Tin </h3>
+                                    <ul>
+                                        <li><a href="#"> Đăng Nhập Đại Lý</a></li>
+                                        <li><a href="#"> Câu Hỏi Thường Gặp </a></li>
+                                        <li><a href="#"> Nhà Đầu Tư </a></li>
+                                        <li><a href="#"> Cơ Hội Nghề Nghiệp </a></li>
+                                        <li><a href="#"> Dịch Vụ Hàng Hóa </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="footer_widget">
+                                    <h3>Khác</h3>
+                                    <ul>
+                                        <li><a href="#"> Hướng Dẫn Thanh Toán</a></li>
+                                        <li><a href="#"> Thông Tin Nối Chuyến </a></li>
+                                        <li><a href="#"> Kênh Thanh Toán </a></li>
+                                        <li><a href="#"> Hóa Đơn VAT </a></li>
+                                        <li><a href="#"> Khuyến Cáo Di Chuyể<nav></nav> </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bottom">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="copyright_area">
+                                    <ul>
+                                        <li><a href="#"> Về Chúng Tôi</a></li>
+                                        <li><a href="#">  Dịch Vụ Khách Hàng  </a></li>
+                                        <li><a href="#">  Chính Sách Bảo Mật  </a></li>
+                                    </ul>
+                                    <p>Copyright &copy; 2024 <a href="#">GALAXY AIR</a>. All rights reserved. </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="footer_social text-right">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                        <li><a class="pinterest" href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-wifi" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--footer area end-->
+      
+		
+		<!-- all js here -->
+        <script src="assets\js\vendor\jquery-1.12.0.min.js"></script>
+        <script src="assets\js\popper.js"></script>
+        <script src="assets\js\bootstrap.min.js"></script>
+        <script src="assets\js\ajax-mail.js"></script>
+        <script src="assets\js\plugins.js"></script>
+        <script src="assets\js\main.js"></script>
+    </body>
+</html>
