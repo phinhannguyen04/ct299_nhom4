@@ -34,9 +34,14 @@ Route::prefix('homepage')->group(function () {
     Route::post('/', [HomepageController::class, 'store'])->name('homepage.store');
 });
 
-Route::get('/', function () {
-    return view('galaxy/index');
+Route::group([], function () {
+    Route::get('/', [SanbayController::class, 'index'])->name('sanbay.index');
+    Route::post('/', [HomepageController::class, 'store'])->name('homepage.store');
 });
+
+// Route::get('/', function () {
+//     return view('galaxy/index');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
