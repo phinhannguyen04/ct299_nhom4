@@ -72,7 +72,8 @@ class HanhkhachController extends Controller
                 'sdt'       => $validatedData['sdt'],
                 'diachi'    => $validatedData['diachi']
             ]);
-    
+            
+            
             // Lấy giá trị chuyenbay_id & loaive
             $chuyenbay_id = $validatedData['ticket_chuyenbay_id'];
             $loaive = $validatedData['ticket_loaive'];
@@ -81,10 +82,10 @@ class HanhkhachController extends Controller
             $ticket = Vemaybay::where('chuyenbay_id', $chuyenbay_id)
                     ->where('loaive', $loaive)
                     ->where(function($query) {
-                        $query->where('user_id', 0)
+                        $query->where('user_id', 1)
                               ->orWhereNull('user_id');
                     })
-                    ->whereNull('guest_code')
+                    ->orWhereNull('guest_code')
                     ->inRandomOrder()
                     ->first();
     
