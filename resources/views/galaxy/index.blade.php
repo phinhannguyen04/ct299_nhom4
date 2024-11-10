@@ -1,5 +1,5 @@
 ﻿<x-flight>
-    @include('layouts.flight-search')
+    @include('layouts.flight-search', ['sanbays' => $sanbays])
     <!--pos page inner-->
     <div class="container">
         <!--pos home section-->
