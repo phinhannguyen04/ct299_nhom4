@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailClass;
 use App\Models\Chuyenbay;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomepageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public static function sendEmail() { 
+        $details = [ 'title' => 'Mail from Laravel', 'body' => 'This is a test email using Laravel.' ]; 
+        
+        Mail::to('phinhannguyen04@gmail.com')->send(new MailClass($details)); 
+        
+        return "Email sent successfully!";
+        
+    }
+
     public function index()
     {
         //
-        return view('homepage');
+        self::sendEmail();
+        return view('galaxy.index');
     }
 
     /**
