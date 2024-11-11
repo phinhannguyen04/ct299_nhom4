@@ -12,13 +12,10 @@
                     <strong>Mã Vé:</strong> {{ $ticket->mavemaybay }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Mã Chuyến Bay:</strong> {{ $ticket->chuyenbay_id }}
+                    <strong>Mã Chuyến Bay:</strong> {{ $ticket->chuyenbay->machuyenbay }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Mã Chỗ Ngồi:</strong> {{ $ticket->chongoi_id }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Người Dùng:</strong> {{ $ticket->user_id ? 'ID: ' . $ticket->user_id : 'Khách' }}
+                    <strong>Mã Chỗ Ngồi:</strong> {{ $ticket->chongoi->vitri }}
                 </li>
                 <li class="list-group-item">
                     <strong>Ngày Mua:</strong> {{ \Carbon\Carbon::parse($ticket->ngaymua)->format('d/m/Y') }}
@@ -33,7 +30,7 @@
                     <strong>Giá Vé:</strong> {{ number_format($ticket->gia, 0, ',', '.') }} VND
                 </li>
                 <li class="list-group-item">
-                    <strong>Mã Khách:</strong> {{ $ticket->guest_code }}
+                    <strong>Khách hàng đặt vé:</strong> {{ $ticket->passengers->name }}
                 </li>
             </ul>
         </div>

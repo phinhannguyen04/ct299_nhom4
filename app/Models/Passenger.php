@@ -24,6 +24,6 @@ class Passenger extends Model
 
     public function vemaybays ()
     {
-        return $this->hasMany(Vemaybay::class);
+        return $this->hasMany(Vemaybay::class, 'guest_code', 'code');
     }
 }

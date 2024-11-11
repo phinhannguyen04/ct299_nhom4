@@ -12,14 +12,14 @@ class MailClass extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $details;
+    public $ticket;
     /**
      * Create a new message instance.
      */
-    public function __construct($details)
+    public function __construct($ticket)
     {
         //
-        $this->details = $details;
+        $this->ticket = $ticket;
     }
 
     /**
@@ -28,7 +28,7 @@ class MailClass extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Xác nhận đặt vé',
+            subject: 'Thông báo đặt vé thành công',
         );
     }
 
@@ -48,7 +48,7 @@ class MailClass extends Mailable
     { 
         return $this->subject('Mail Class') 
                     ->view('emails.your_template') 
-                    ->with('details', $this->details); // Truyền biến $details vào view 
+                    ->with('details', $this->ticket); // Truyền biến $details vào view 
     }
 
 
