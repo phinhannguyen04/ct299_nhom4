@@ -32,6 +32,22 @@ class ChuyenbayController extends Controller
         //
     }
 
+    public function getInformation (Request $req)
+    {
+        // dd($req);
+        $validation = $req->validate([
+            'mavemaybay' => 'required',
+        ]);
+
+        $ticket = Vemaybay::where('mavemaybay', $validation['mavemaybay'])->first();
+        if ($ticket)
+        {
+            // dd ($data);
+            return view('tickets.information', compact('ticket'));
+        }
+        else return 'không có dữ liệu';
+    }
+
     /**
      * Store a newly created resource in storage.
      */
