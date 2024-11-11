@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Mail\MailClass;
 use App\Models\Vemaybay;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class HanhkhachController extends Controller
@@ -104,16 +106,26 @@ class HanhkhachController extends Controller
                     'ngaymua'           => $ticket->ngaymua,
                 ];
             }
-    
-            // In thông tin vé đã tìm được (nếu có)
-            // print_r($ticket);
         }
-        return response()->json([
-            'message' => 'Tickets updated successfully',
-            'tickets' => $ticketsUpdated
-        ]);
+        self::sendEmail($ticketsUpdated);
     }
     
+
+    public static function sendEmail($ticketsUpdated) 
+    { 
+        
+        $details = [ 'title' => 'Mail from Laravel', 'body' => 'This is a test email using Laravel.' ]; 
+        
+        foreach ($ticketsUpdated as $info)
+        {
+            $passenger_email = Passenger::where('code', $info['guest_code'])->value('email'); 
+            
+            Mail::to($passenger_email)->send(new MailClass($details)); 
+        }
+        
+        echo "Email sent successfully!";
+        
+    }
 
     /**
      * Display the specified resource.
