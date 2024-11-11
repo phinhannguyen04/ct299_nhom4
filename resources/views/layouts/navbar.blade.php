@@ -60,16 +60,17 @@
                                     <div class="search-dropdown">
                                         <div
                                             class="border border-secondary rounded p-4 shadow search-form-container">
-                                            <form id="ticketSearchForm">
+                                            <form id="ticketSearchForm" method="POST" action="{{ url('tickets/information') }}">
+                                                @csrf
                                                 <h4 class="mb-3">Tìm Vé Máy Bay</h4>
                                                 <div class="mb-3">
                                                     <label for="ticketCode" class="form-label">Nhập mã
                                                         vé:</label>
-                                                    <input type="text" class="form-control" id="ticketCode"
+                                                    <input type="text" class="form-control" id="ticketCode" name="mavemaybay"
                                                         placeholder="Nhập mã vé" required>
                                                 </div>
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button type="button" class="btn-search"
+                                                    <button type="submit" class="btn-search"
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         Tìm vé
                                                     </button>

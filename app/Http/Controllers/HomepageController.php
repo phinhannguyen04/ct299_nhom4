@@ -12,6 +12,7 @@ class HomepageController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public static function sendEmail() { 
         $details = [ 'title' => 'Mail from Laravel', 'body' => 'This is a test email using Laravel.' ]; 
         
@@ -21,19 +22,11 @@ class HomepageController extends Controller
         
     }
 
+    // return homepage view
     public function index()
     {
-        //
         self::sendEmail();
         return view('galaxy.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -58,50 +51,15 @@ class HomepageController extends Controller
             ->wheredate('ngaybay', $validation['departure-date'])
             ->get();
 
-        
-        // $flight = Chuyenbay::with('sanbayXuatphat', 'sanbayDiemden')->findOrFail($flights->first()->id);
 
         if ($flights->isEmpty()) {
             return 'Không tìm thấy chuyến bay nào cho ngày đã chọn.';
         }
 
-        //dd($totalPassengers);
 
         return redirect()->route('tickets.index')
             ->with('flights', $flights)
             ->with('totalPassengers', $totalPassengers);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

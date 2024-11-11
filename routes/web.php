@@ -27,6 +27,7 @@ Route::prefix('passengers')->group(function () {
 Route::prefix('tickets')->group(function () {
     Route::get('/', [ChuyenbayController::class, 'index'])->name('tickets.index');
     Route::post('/', [ChuyenbayController::class, 'store'])->name('tickets.store');
+    Route::post('/information', [ChuyenbayController::class, 'getInformation'])->name('tickets.getInfomation');
 });
 
 Route::prefix('homepage')->group(function () {
