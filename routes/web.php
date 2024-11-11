@@ -7,6 +7,14 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ChuyenbayController;
 use App\Http\Controllers\HanhkhachController;
 
+use App\Http\Controllers\VNPayController;
+
+Route::post('/vnpay', [VNPayController::class, 'createPayment'])->name('vnpay.create');
+Route::get('/vnpay-return', [VNPayController::class, 'paymentReturn'])->name('vnpay.return');
+Route::get('/vnpay/success', [VNPayController::class, 'success'])->name('vnpay.success');
+Route::get('/vnpay/failure', [VNPayController::class, 'failure'])->name('vnpay.failure');
+
+
 Route::prefix('view')->group(function () {
     Route::get('/diadiem-quangbinh', fn() => view ('galaxy.diadiem-quangbinh'));
     Route::get('/diadiem-gialai', fn() => view ('galaxy.diadiem-gialai'));

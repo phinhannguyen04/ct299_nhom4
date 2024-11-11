@@ -49,6 +49,6 @@ class Vemaybay extends Model
 
     public function passengers ()
     {
-        return $this->belongsTo(Passenger::class);
+        return $this->belongsTo(Passenger::class, 'guest_code', 'code');
     }
 }

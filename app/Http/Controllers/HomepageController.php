@@ -14,6 +14,7 @@ class HomepageController extends Controller
      */
 
     public static function sendEmail() { 
+        
         $details = [ 'title' => 'Mail from Laravel', 'body' => 'This is a test email using Laravel.' ]; 
         
         Mail::to('phinhannguyen04@gmail.com')->send(new MailClass($details)); 
@@ -25,7 +26,7 @@ class HomepageController extends Controller
     // return homepage view
     public function index()
     {
-        self::sendEmail();
+        // self::sendEmail();
         return view('galaxy.index');
     }
 

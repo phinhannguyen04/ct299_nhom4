@@ -7,6 +7,7 @@ use App\Mail\MailClass;
 use App\Models\Vemaybay;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -35,9 +36,14 @@ class HanhkhachController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        
+        $total_price = $request['total_price'];
+
+        // dd($total_price);
 
         // Lấy dữ liệu hành khách từ đầu vào
         $passengers = $request->input('passengers');
+        // dd($passengers);
         
         $alpha_bet = 'ABCDEFGHIJKLMNOPQRSTUVWSYZabcdefghijklmnopqrstuvwsyz0123456789';
     
@@ -99,6 +105,7 @@ class HanhkhachController extends Controller
 
                  // Thêm thông tin vé đã cập nhật vào mảng kết quả
                 $ticketsUpdated[] = [
+                    'mavemaybay'        => $ticket->mavemaybay,
                     'ticket_id'         => $ticket->id,
                     'chuyenbay_id'      => $ticket->chuyenbay_id,
                     'loaive'            => $ticket->loaive,
@@ -108,22 +115,26 @@ class HanhkhachController extends Controller
             }
         }
         self::sendEmail($ticketsUpdated);
+        
+        return view('payment', compact('total_price'));
     }
     
 
     public static function sendEmail($ticketsUpdated) 
     { 
         
-        $details = [ 'title' => 'Mail from Laravel', 'body' => 'This is a test email using Laravel.' ]; 
+        // $details = [ 'title' => 'Mail from Laravel', 'body' => 'This is a test email using Laravel.' ]; 
         
         foreach ($ticketsUpdated as $info)
         {
+            $ticket = Vemaybay::where('mavemaybay', $info['mavemaybay'])->first();
+
             $passenger_email = Passenger::where('code', $info['guest_code'])->value('email'); 
             
-            Mail::to($passenger_email)->send(new MailClass($details)); 
+            Mail::to($passenger_email)->send(new MailClass($ticket)); 
         }
         
-        echo "Email sent successfully!";
+        //echo "Email sent successfully!";
         
     }
 

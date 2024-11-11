@@ -73,23 +73,27 @@
                                 
                                 
                             @if ($ticket)
-                            <input
-                                name="passengers[{{ $i }}][ticket_chuyenbay_id]"
+                                    <input
+                                        name="passengers[{{ $i }}][ticket_chuyenbay_id]"
+                                        type="hidden"
+                                        value="{{ $ticket->chuyenbay_id }}"
+                                    />
+                                    <input
+                                        name="passengers[{{ $i }}][ticket_id]"
+                                        type="hidden"
+                                        value="{{ $ticket->id }}"
+                                    />
+                                    <input
+                                        name="passengers[{{ $i }}][ticket_loaive]"
+                                        type="hidden"
+                                        value="{{ $ticket->loaive }}"
+                                    />
+                            @endif
+                            <input  
+                                name="total_price"
                                 type="hidden"
-                                value="{{ $ticket->chuyenbay_id }}"
-                            />
-                            <input
-                                name="passengers[{{ $i }}][ticket_id]"
-                                type="hidden"
-                                value="{{ $ticket->id }}"
-                            />
-                            <input
-                                name="passengers[{{ $i }}][ticket_loaive]"
-                                type="hidden"
-                                value="{{ $ticket->loaive }}"
-                            />
-                                @endif
-                                        
+                                value="{{ $total_tickets_price }}"
+                            />  
                             <!-- Form thông tin hành khách -->
                             <div class="card form-container mb-4">
                                 <h3 class="text-center mb-4">Thông tin hành khách {{ $i }}</h3>
