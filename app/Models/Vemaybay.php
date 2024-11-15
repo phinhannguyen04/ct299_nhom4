@@ -23,6 +23,7 @@ class Vemaybay extends Model
         'guest_code'
     ];
 
+
     // một vé máy bay ứng với một chuyến bay
     public function chuyenbay ()
     {

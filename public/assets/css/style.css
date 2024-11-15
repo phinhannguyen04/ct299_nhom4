@@ -1903,11 +1903,12 @@
 	border-radius: 10px;
 }
 .product_info_button ul li a {
+	background-color: #224a80;
 	display: block;
 	padding: 10px 30px;
 	float: left;
 	text-transform: uppercase;
-	color: #5b5b5b;
+	color: #fff;
 	font-size: 16px;
 	font-weight: 700;
 	position: relative;

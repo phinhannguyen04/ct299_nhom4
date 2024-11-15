@@ -25,6 +25,14 @@ class Chuyenbay extends Model
         'giaghephothong',
         'giaghethuonggia'
     ];
+
+    public function getRemainingTicketsAttribute()
+    {
+        // Đếm số lượng vé có guest_code bằng NULL
+        return $this->vemaybay()->whereNull('guest_code')->count();
+    }
+
+
     /*
         một chuyến bay từ 1 sân
     */ 
@@ -45,7 +53,7 @@ class Chuyenbay extends Model
     */
     public function vemaybay ()
     {
-        return $this->hasMany(Vemaybay::class);
+        return $this->hasMany(Vemaybay::class, 'chuyenbay_id', 'id');
     }
 
     protected static function booted()

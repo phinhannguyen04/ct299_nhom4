@@ -14,7 +14,9 @@ use Filament\Tables\Table;
 use League\Uri\Idna\Option;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TimePicker;
@@ -23,7 +25,6 @@ use Illuminate\Database\Eloquent\Collection;
 use App\Filament\Resources\ChuyenbayResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ChuyenbayResource\RelationManagers;
-use Filament\Forms\Components\Section;
 
 class ChuyenbayResource extends Resource
 {
@@ -138,7 +139,6 @@ class ChuyenbayResource extends Resource
                                             if($get('gioden') < $get('giobay')) $set('gioden', null);
                                             if($get('gioden') === $get('giobay')) $set('gioden', null);
                                         };
-                                        
                                     }
                                 ),
             
@@ -243,33 +243,67 @@ class ChuyenbayResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('machuyenbay')->label('Mã chuyến bay'),
+                TextColumn::make('machuyenbay')
+                    ->label('Mã chuyến bay')
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('sanbayXuatphat.ten')
-                    ->label('Từ'),
+                    ->label('Từ')
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('sanbayDiemden.ten')
-                    ->label('Đến'),
+                    ->label('Đến')
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('ngaybay')
-                    ->label('Ngày bay'),
+                    ->label('Ngày bay')
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); })
+                    // ->extraAttributes(function ($record) { 
+                    //     $ngaybay = Carbon::parse($record->ngaybay); 
+                    //     $currentDate = Carbon::now(); 
+                    //     if ($ngaybay->lt($currentDate)) 
+                    //     { 
+                    //         return ['style' => 'background-color: yellow;']; 
+                        
+                    //     } elseif ($ngaybay->eq($currentDate)) 
+                    //     { 
+                    //         return ['style' => 'background-color: green;']; 
+                    //     } else { return []; } 
+                    // })
+                ,
                 TextColumn::make('ngayden')
-                    ->label('Ngày đến'),
+                    ->label('Ngày đến')
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('giobay')
-                    ->label('Giờ bay'),
+                    ->label('Giờ bay')
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('gioden')
                     ->label('Giờ đến')
-                    ->toggleable(),
+                    ->toggleable()
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('succhua')
                     ->label('Sức chứa')
-                    ->toggleable(),
+                    ->toggleable()
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
+                    
+                TextColumn::make('remaining_tickets')
+                    ->label('Số vé còn lại')
+                    ->counts('vemaybay', fn ($query) => $query->whereNull('guest_code'))
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
+                
+
                 TextColumn::make('tenmaybay')
                     ->label('Tên máy bay')
-                    ->toggleable(),
+                    ->toggleable()
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('giaghephothong')
                     ->label('Economy')
-                    ->toggleable(),
+                    ->toggleable()
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
                 TextColumn::make('giaghethuonggia')
                     ->label('Business')
-                    ->toggleable(),
+                    ->toggleable()
+                    ->extraAttributes(function (Model $record) { return self::getRowStyles($record); }),
             ])
+            ->defaultSort('ngaybay', 'asc')
+            
             ->filters([
                 //
             ])
@@ -319,4 +353,26 @@ class ChuyenbayResource extends Resource
         // kiểm tra nếu giá của loại ghế nhỏ hơn 0 thì gán $set($loaighe) = null
         if ($gia < 0 || $gia === null) $set($loaighe, null);
     }
+
+    protected static function getRowStyles(Model $record): array
+    {
+        // Lấy giờ bay từ record (giả sử giờ bay được lưu trong cột 'giobay')
+        $giobay = Carbon::parse($record->giobay); 
+        $currentTime = Carbon::now(); 
+
+        // Nếu chuyến bay đã khởi hành (giờ bay nhỏ hơn giờ hiện tại)
+        if ($giobay->lt($currentTime)) {
+            return ['style' => 'background-color: #003161; color: #50; color: #fff']; // Đỏ đậm
+        }
+
+        // Nếu chuyến bay khởi hành ngay bây giờ (cùng ngày và giờ bay bằng giờ hiện tại)
+        if ($giobay->format('Y-m-d') === $currentTime->format('Y-m-d') && $giobay->eq($currentTime)) {
+            return ['style' => 'background-color: #006A67; color: #300;']; // Xanh lá cây
+        }
+
+        // Nếu chuyến bay trong tương lai (giờ bay lớn hơn giờ hiện tại)
+        return ['style' => 'background-color: #FFF4B7; color: #300;']; // Xanh dương nhạt
+    }
+
+    
 }

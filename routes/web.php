@@ -13,6 +13,9 @@ Route::post('/vnpay', [VNPayController::class, 'createPayment'])->name('vnpay.cr
 Route::get('/vnpay-return', [VNPayController::class, 'paymentReturn'])->name('vnpay.return');
 Route::get('/vnpay/success', [VNPayController::class, 'success'])->name('vnpay.success');
 Route::get('/vnpay/failure', [VNPayController::class, 'failure'])->name('vnpay.failure');
+Route::get('/vnpay/success', function () {
+    return view('tickets.success');
+});
 
 
 Route::prefix('view')->group(function () {
