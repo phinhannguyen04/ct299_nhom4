@@ -8,8 +8,8 @@
                     <ul class="d-flex align-items-center">
                         <!-- Support Icon -->
                         <li class="support">
-                            <a href="#" title="Hỗ trợ">
-                                <i class="fa fa-headphones"></i> Hỗ trợ
+                            <a href="{{ url('/admin/login') }}" title="Hỗ trợ">
+                                <i class="fa fa-headphones"></i> ADMIN
                             </a>
                         </li>
                         <!-- Sign Up and Login Links -->

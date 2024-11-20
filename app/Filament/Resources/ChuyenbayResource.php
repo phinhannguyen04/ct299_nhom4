@@ -362,7 +362,7 @@ class ChuyenbayResource extends Resource
 
         // Nếu chuyến bay đã khởi hành (giờ bay nhỏ hơn giờ hiện tại)
         if ($giobay->lt($currentTime)) {
-            return ['style' => 'background-color: #003161; color: #50; color: #fff']; // Đỏ đậm
+            return ['style' => 'background-color: #fbcfe8; color: #200;']; // Đỏ đậm
         }
 
         // Nếu chuyến bay khởi hành ngay bây giờ (cùng ngày và giờ bay bằng giờ hiện tại)

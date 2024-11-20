@@ -54,7 +54,7 @@ class HomepageController extends Controller
 
 
         if ($flights->isEmpty()) {
-            return 'Không tìm thấy chuyến bay nào cho ngày đã chọn.';
+            return redirect()->back()->with('error', 'Không tìm thấy chuyến bay phù hợp.');
         }
 
 
