@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use Carbon\Carbon;
-use Filament\Forms;
 use Filament\Tables;
 use App\Models\Chongoi;
 use App\Models\Vemaybay;
@@ -11,18 +10,13 @@ use Filament\Forms\Form;
 use App\Models\Chuyenbay;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms\Components\DatePicker;
-use Illuminate\Database\Eloquent\Builder;
-use Symfony\Component\Mime\Part\DataPart;
 use App\Filament\Resources\VemaybayResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\VemaybayResource\RelationManagers;
 use Filament\Tables\Filters\SelectFilter;
 
 class VemaybayResource extends Resource
@@ -33,6 +27,7 @@ class VemaybayResource extends Resource
 
     protected static ?string $navigationLabel = 'Vé máy bay';
 
+    protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
     {
@@ -154,6 +149,36 @@ class VemaybayResource extends Resource
                     Tables\Actions\DeleteBulkAction::make()->label('Xóa'),
                 ])->label('Chọn Xóa'),
             ]);
+    }
+
+    public static function getLable (): ?string
+    {
+        return 'Vé máy bay';
+    }
+
+    public static function getPlurable (): ?string
+    {
+        return 'Vé máy bay';
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return 'Vé máy bay';
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Vé máy bay';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'vé máy bay';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'vé máy bay';
     }
 
     public static function getRelations(): array

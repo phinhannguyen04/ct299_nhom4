@@ -3,15 +3,11 @@
 namespace App\Filament\Resources;
 
 use Carbon\Carbon;
-use Filament\Forms;
 use Filament\Tables;
 use App\Models\Sanbay;
-use App\Models\Chongoi;
-use App\Models\Vemaybay;
 use Filament\Forms\Form;
 use App\Models\Chuyenbay;
 use Filament\Tables\Table;
-use League\Uri\Idna\Option;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
@@ -20,11 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TimePicker;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use App\Filament\Resources\ChuyenbayResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ChuyenbayResource\RelationManagers;
 
 class ChuyenbayResource extends Resource
 {
@@ -255,18 +247,6 @@ class ChuyenbayResource extends Resource
                 TextColumn::make('ngaybay')
                     ->label('Ngày bay')
                     ->extraAttributes(function (Model $record) { return self::getRowStyles($record); })
-                    // ->extraAttributes(function ($record) { 
-                    //     $ngaybay = Carbon::parse($record->ngaybay); 
-                    //     $currentDate = Carbon::now(); 
-                    //     if ($ngaybay->lt($currentDate)) 
-                    //     { 
-                    //         return ['style' => 'background-color: yellow;']; 
-                        
-                    //     } elseif ($ngaybay->eq($currentDate)) 
-                    //     { 
-                    //         return ['style' => 'background-color: green;']; 
-                    //     } else { return []; } 
-                    // })
                 ,
                 TextColumn::make('ngayden')
                     ->label('Ngày đến')
@@ -342,6 +322,22 @@ class ChuyenbayResource extends Resource
     {
         return 'Chuyến bay';
     }
+
+    public static function getTitle(): string
+    {
+        return 'Chuyến bay';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'chuyến bay';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'chuyến bay';
+    }
+
 
     // hàm kiểm tra giá ghế nếu mang giá trị âm thì reset về 0
     public static function ktraAndReset ($state, string $loaighe, callable $set, callable $get): void

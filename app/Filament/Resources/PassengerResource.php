@@ -2,21 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Models\User;
+use App\Filament\Resources\PassengerResource\Pages;
+use App\Models\Passenger;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class UserResource extends Resource
+
+class PassengerResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Passenger::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-
-    protected static ?string $navigationLabel = 'Người dùng';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -29,15 +28,10 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('cccd')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('passport')
+                Forms\Components\TextInput::make('sdt')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('diachi')
@@ -51,18 +45,20 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Tên'),
                 Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
+                    ->searchable()
+                    ->label('Email'),
                 Tables\Columns\TextColumn::make('cccd')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('passport')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Căn cước công dân'),
+                Tables\Columns\TextColumn::make('sdt')
+                    ->searchable()
+                    ->label('Số điện thoại'),
                 Tables\Columns\TextColumn::make('diachi')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Địa chỉ')
             ])
             ->filters([
                 //
@@ -79,29 +75,28 @@ class UserResource extends Resource
 
     public static function getLabel(): ?string 
     {
-        return 'người dùng';
+        return 'Hành khách';
     }
 
     public static function getPluralLable (): ?string
     {
-        return 'người dùng';
+        return 'Hành khách';
     }
 
     public static function getTitle(): string
     {
-        return 'người dùng';
+        return 'Hành khách';
     }
 
     public static function getModelLabel(): string
     {
-        return 'người dùng';
+        return 'Hành khách';
     }
 
     public static function getPluralModelLabel(): string
     {
-        return 'người dùng';
+        return 'Hành khách';
     }
-
 
     public static function getRelations(): array
     {
@@ -113,9 +108,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListPassengers::route('/'),
+            'create' => Pages\CreatePassenger::route('/create'),
+            'edit' => Pages\EditPassenger::route('/{record}/edit'),
         ];
     }
 }

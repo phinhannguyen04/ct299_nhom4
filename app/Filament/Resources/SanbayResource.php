@@ -2,18 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
 use Filament\Tables;
 use App\Models\Sanbay;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\SanbayResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SanbayResource\RelationManagers;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use App\Filament\Resources\SanbayResource\Pages;
 
 class SanbayResource extends Resource
 {
@@ -69,6 +65,28 @@ class SanbayResource extends Resource
     {
         return 'Sân bay';
     }
+
+    public static function getPluralLabel(): string
+    {
+        return 'Sân bay';
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Sân bay';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'sân bay';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'sân bay';
+    }
+
+
     public static function getRelations(): array
     {
         return [
